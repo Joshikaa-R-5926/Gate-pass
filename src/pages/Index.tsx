@@ -10,9 +10,15 @@ const Index = () => {
         <p className="text-xl text-gray-600 dark:text-gray-400">
           Start building your amazing project here!
         </p>
-        <div className="mt-6">
+        <div className="mt-6 flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4">
           <Link to="/login">
             <Button>Go to Login Page</Button>
+          </Link>
+          <Link to="/student-dashboard">
+            <Button variant="outline">Go to Student Dashboard</Button>
+          </Link>
+          <Link to="/tutor-dashboard">
+            <Button variant="outline">Go to Tutor Dashboard</Button>
           </Link>
         </div>
       </div>
