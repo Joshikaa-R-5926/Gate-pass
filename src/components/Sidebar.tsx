@@ -6,6 +6,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { MenuIcon } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import UserProfileCard from "./UserProfileCard"; // Import the new UserProfileCard
 
 interface NavItem {
   href: string;
@@ -17,9 +18,11 @@ interface SidebarProps {
   navItems: NavItem[];
   children: React.ReactNode;
   title: string;
+  userName: string; // Add userName prop
+  userEmail: string; // Add userEmail prop
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ navItems, children, title }) => {
+const Sidebar: React.FC<SidebarProps> = ({ navItems, children, title, userName, userEmail }) => {
   const isMobile = useIsMobile();
   const [isOpen, setIsOpen] = React.useState(false);
 
@@ -55,7 +58,8 @@ const Sidebar: React.FC<SidebarProps> = ({ navItems, children, title }) => {
             </SheetTrigger>
             <SheetContent side="left" className="sm:max-w-xs">
               <h2 className="text-xl font-semibold p-4">{title}</h2>
-              <ScrollArea className="h-[calc(100vh-80px)]">
+              <UserProfileCard name={userName} email={userEmail} /> {/* User Profile Card for mobile */}
+              <ScrollArea className="h-[calc(100vh-160px)]"> {/* Adjusted height */}
                 {NavLinks}
               </ScrollArea>
             </SheetContent>
@@ -78,6 +82,7 @@ const Sidebar: React.FC<SidebarProps> = ({ navItems, children, title }) => {
               <span className="text-sidebar-primary text-lg">{title}</span>
             </Link>
           </div>
+          <UserProfileCard name={userName} email={userEmail} /> {/* User Profile Card for desktop */}
           <ScrollArea className="flex-1">
             {NavLinks}
           </ScrollArea>

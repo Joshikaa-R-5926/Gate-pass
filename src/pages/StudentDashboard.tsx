@@ -4,21 +4,23 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { dummyStudents, Student } from "@/data/students";
-import Sidebar from "@/components/Sidebar"; // Import the Sidebar component
-import { HomeIcon, BookOpenIcon, GraduationCapIcon, CalendarIcon, UsersIcon } from "lucide-react"; // Import icons
+import Sidebar from "@/components/Sidebar";
+import { HomeIcon, BookOpenIcon, GraduationCapIcon, CalendarIcon, UsersIcon } from "lucide-react";
 
 const studentNavItems = [
   { href: "/", label: "Home", icon: HomeIcon },
   { href: "/student-dashboard", label: "Dashboard", icon: GraduationCapIcon },
   { href: "/student-dashboard/courses", label: "My Courses", icon: BookOpenIcon },
-  { href: "/student-dashboard/grades", label: "Grades", icon: CalendarIcon }, // Using CalendarIcon as a placeholder
+  { href: "/student-dashboard/grades", label: "Grades", icon: CalendarIcon },
   { href: "/student-dashboard/schedule", label: "Schedule", icon: CalendarIcon },
   { href: "/student-dashboard/tutors", label: "Find Tutors", icon: UsersIcon },
 ];
 
 const StudentDashboard = () => {
+  const currentUser = dummyStudents[0]; // Assuming the first student is the current user
+
   return (
-    <Sidebar navItems={studentNavItems} title="Student Portal">
+    <Sidebar navItems={studentNavItems} title="Student Portal" userName={currentUser.name} userEmail={currentUser.email}>
       <div className="flex flex-col items-center justify-center p-4">
         <Card className="w-full max-w-4xl">
           <CardHeader>

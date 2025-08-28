@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { dummyTutors, Tutor } from "@/data/tutors";
-import Sidebar from "@/components/Sidebar"; // Import the Sidebar component
-import { HomeIcon, UsersIcon, CalendarIcon, MessageSquareIcon, BookIcon } from "lucide-react"; // Import icons
+import Sidebar from "@/components/Sidebar";
+import { HomeIcon, UsersIcon, CalendarIcon, MessageSquareIcon, BookIcon } from "lucide-react";
 
 const tutorNavItems = [
   { href: "/", label: "Home", icon: HomeIcon },
@@ -17,8 +17,10 @@ const tutorNavItems = [
 ];
 
 const TutorDashboard = () => {
+  const currentUser = dummyTutors[0]; // Assuming the first tutor is the current user
+
   return (
-    <Sidebar navItems={tutorNavItems} title="Tutor Portal">
+    <Sidebar navItems={tutorNavItems} title="Tutor Portal" userName={currentUser.name} userEmail={currentUser.email}>
       <div className="flex flex-col items-center justify-center p-4">
         <Card className="w-full max-w-4xl">
           <CardHeader>
