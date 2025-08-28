@@ -38,7 +38,7 @@ const StudentDashboard = () => {
                 <TableRow>
                   <TableHead>Name</TableHead>
                   <TableHead>Email</TableHead>
-                  <TableHead>My Request</TableHead> {/* Changed from Grade to My Request */}
+                  <TableHead>Grade</TableHead>
                   <TableHead>Courses</TableHead>
                   <TableHead>Last Login</TableHead>
                 </TableRow>
@@ -48,7 +48,7 @@ const StudentDashboard = () => {
                   <TableRow key={student.id}>
                     <TableCell className="font-medium">{student.name}</TableCell>
                     <TableCell>{student.email}</TableCell>
-                    <TableCell>Pending</TableCell> {/* Placeholder for My Request */}
+                    <TableCell>{student.grade}</TableCell>
                     <TableCell>{student.courses.join(", ")}</TableCell>
                     <TableCell>{new Date(student.lastLogin).toLocaleString()}</TableCell>
                   </TableRow>
