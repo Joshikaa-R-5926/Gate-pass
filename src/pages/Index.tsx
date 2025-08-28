@@ -55,37 +55,37 @@ const Index = () => {
           Start building your amazing project here! Explore the different dashboards.
         </motion.p>
         <motion.div
-          className="mt-8 flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4 flex-wrap justify-center"
+          className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 max-w-4xl mx-auto" // Changed to responsive grid
           variants={containerVariants}
         >
           <motion.div variants={itemVariants} whileHover="hover">
             <Link to="/login">
-              <Button className="w-full sm:w-auto px-6 py-3 text-lg">Go to Login Page</Button>
+              <Button className="w-full px-6 py-3 text-lg">Go to Login Page</Button>
             </Link>
           </motion.div>
           <motion.div variants={itemVariants} whileHover="hover">
             <Link to="/student-dashboard">
-              <Button variant="outline" className="w-full sm:w-auto px-6 py-3 text-lg">Go to Student Dashboard</Button>
+              <Button variant="outline" className="w-full px-6 py-3 text-lg">Go to Student Dashboard</Button>
             </Link>
           </motion.div>
           <motion.div variants={itemVariants} whileHover="hover">
             <Link to="/tutor-dashboard">
-              <Button variant="outline" className="w-full sm:w-auto px-6 py-3 text-lg">Go to Tutor Dashboard</Button>
+              <Button variant="outline" className="w-full px-6 py-3 text-lg">Go to Tutor Dashboard</Button>
             </Link>
           </motion.div>
           <motion.div variants={itemVariants} whileHover="hover">
             <Link to="/hod-dashboard">
-              <Button variant="outline" className="w-full sm:w-auto px-6 py-3 text-lg">Go to HOD Dashboard</Button>
+              <Button variant="outline" className="w-full px-6 py-3 text-lg">Go to HOD Dashboard</Button>
             </Link>
           </motion.div>
           <motion.div variants={itemVariants} whileHover="hover">
             <Link to="/warden-dashboard">
-              <Button variant="outline" className="w-full sm:w-auto px-6 py-3 text-lg">Go to Warden Dashboard</Button>
+              <Button variant="outline" className="w-full px-6 py-3 text-lg">Go to Warden Dashboard</Button>
             </Link>
           </motion.div>
           <motion.div variants={itemVariants} whileHover="hover">
             <Link to="/admin-dashboard">
-              <Button variant="outline" className="w-full sm:w-auto px-6 py-3 text-lg">Go to Admin Dashboard</Button>
+              <Button variant="outline" className="w-full px-6 py-3 text-lg">Go to Admin Dashboard</Button>
             </Link>
           </motion.div>
         </motion.div>
