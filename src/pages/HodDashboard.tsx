@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { dummyHODs, HOD } from "@/data/hods";
 import Sidebar from "@/components/Sidebar";
-import { HomeIcon, Building2Icon, UsersIcon, SettingsIcon, ChevronLeft } from "lucide-react";
+import { HomeIcon, Building2Icon, UsersIcon, SettingsIcon, ChevronLeft, UserCogIcon } from "lucide-react";
 
 const hodNavItems = [
   { href: "/", label: "Home", icon: HomeIcon },
@@ -20,9 +20,10 @@ const HodDashboard = () => {
 
   return (
     <Sidebar navItems={hodNavItems} title="HOD Portal" userName={currentUser.name} userEmail={currentUser.email}>
-      <div className="flex flex-col items-center justify-center p-4">
-        <Card className="w-full max-w-4xl">
-          <CardHeader className="relative text-center">
+      <div className="flex flex-col gap-6 p-4 lg:p-6">
+        {/* Welcome Section */}
+        <Card className="w-full">
+          <CardHeader className="relative">
             <Button
               variant="ghost"
               size="icon"
@@ -32,15 +33,57 @@ const HodDashboard = () => {
               <ChevronLeft className="h-5 w-5" />
               <span className="sr-only">Back</span>
             </Button>
-            <CardTitle className="text-3xl">HOD Dashboard</CardTitle>
-            <CardDescription>Overview of Head of Department information.</CardDescription>
+            <CardTitle className="text-3xl text-center">Welcome, {currentUser.name}!</CardTitle>
+            <CardDescription className="text-center">Overview of your department's performance and management.</CardDescription>
           </CardHeader>
-          <CardContent className="space-y-6">
+          <CardContent>
             <p className="text-lg text-gray-700 dark:text-gray-300 text-center">
-              Welcome, Head of Department! Here you can manage your department's students and settings.
+              Effectively manage students, faculty, and departmental settings.
             </p>
+          </CardContent>
+        </Card>
 
-            <h2 className="text-2xl font-semibold mt-8 mb-4 text-gray-800 dark:text-gray-200">Your Information</h2>
+        {/* Key Metrics */}
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Department</CardTitle>
+              <Building2Icon className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{currentUser.department}</div>
+              <p className="text-xs text-muted-foreground">Your assigned department</p>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Students Managed</CardTitle>
+              <UsersIcon className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{currentUser.studentsManaged}</div>
+              <p className="text-xs text-muted-foreground">Total students in your department</p>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Tutors Supervised</CardTitle>
+              <UserCogIcon className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">5</div> {/* Dummy data */}
+              <p className="text-xs text-muted-foreground">Active tutors under your supervision</p>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Your Information Table */}
+        <Card className="w-full">
+          <CardHeader>
+            <CardTitle>Your Detailed Information</CardTitle>
+            <CardDescription>A comprehensive look at your profile.</CardDescription>
+          </CardHeader>
+          <CardContent>
             <Table>
               <TableHeader>
                 <TableRow>
@@ -51,25 +94,14 @@ const HodDashboard = () => {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {dummyHODs.map((hod: HOD) => (
-                  <TableRow key={hod.id}>
-                    <TableCell className="font-medium">{hod.name}</TableCell>
-                    <TableCell>{hod.email}</TableCell>
-                    <TableCell>{hod.department}</TableCell>
-                    <TableCell>{hod.studentsManaged}</TableCell>
-                  </TableRow>
-                ))}
+                <TableRow key={currentUser.id}>
+                  <TableCell className="font-medium">{currentUser.name}</TableCell>
+                  <TableCell>{currentUser.email}</TableCell>
+                  <TableCell>{currentUser.department}</TableCell>
+                  <TableCell>{currentUser.studentsManaged}</TableCell>
+                </TableRow>
               </TableBody>
             </Table>
-
-            <div className="flex justify-center space-x-4 mt-8">
-              <Button asChild>
-                <Link to="/">Go to Home</Link>
-              </Button>
-              <Button asChild variant="secondary">
-                <Link to="/login">Go to Login</Link>
-              </Button>
-            </div>
           </CardContent>
         </Card>
       </div>

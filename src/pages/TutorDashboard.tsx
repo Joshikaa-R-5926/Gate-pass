@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { dummyTutors, Tutor } from "@/data/tutors";
 import Sidebar from "@/components/Sidebar";
-import { HomeIcon, UsersIcon, CalendarIcon, MessageSquareIcon, BookIcon } from "lucide-react";
+import { HomeIcon, UsersIcon, CalendarIcon, MessageSquareIcon, BookIcon, StarIcon } from "lucide-react";
 
 const tutorNavItems = [
   { href: "/", label: "Home", icon: HomeIcon },
@@ -21,18 +21,61 @@ const TutorDashboard = () => {
 
   return (
     <Sidebar navItems={tutorNavItems} title="Tutor Portal" userName={currentUser.name} userEmail={currentUser.email}>
-      <div className="flex flex-col items-center justify-center p-4">
-        <Card className="w-full max-w-4xl">
+      <div className="flex flex-col gap-6 p-4 lg:p-6">
+        {/* Welcome Section */}
+        <Card className="w-full">
           <CardHeader>
-            <CardTitle className="text-3xl text-center">Tutor Dashboard</CardTitle>
-            <CardDescription className="text-center">Overview of tutor information.</CardDescription>
+            <CardTitle className="text-3xl">Welcome, {currentUser.name}!</CardTitle>
+            <CardDescription>Here's an overview of your tutoring activities.</CardDescription>
           </CardHeader>
-          <CardContent className="space-y-6">
-            <p className="text-lg text-gray-700 dark:text-gray-300 text-center">
-              Welcome, Tutor! This is your dedicated space to manage your students, view schedules, and access teaching resources.
+          <CardContent>
+            <p className="text-lg text-gray-700 dark:text-gray-300">
+              Manage your students, schedule, and resources efficiently.
             </p>
+          </CardContent>
+        </Card>
 
-            <h2 className="text-2xl font-semibold mt-8 mb-4 text-gray-800 dark:text-gray-200">Your Information</h2>
+        {/* Key Metrics */}
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Total Students</CardTitle>
+              <UsersIcon className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{currentUser.studentsCount}</div>
+              <p className="text-xs text-muted-foreground">Currently assigned students</p>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Average Rating</CardTitle>
+              <StarIcon className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{currentUser.rating} / 5.0</div>
+              <p className="text-xs text-muted-foreground">Based on student feedback</p>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Subjects Taught</CardTitle>
+              <BookIcon className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{currentUser.subjects.length}</div>
+              <p className="text-xs text-muted-foreground">{currentUser.subjects.join(", ")}</p>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Your Information Table */}
+        <Card className="w-full">
+          <CardHeader>
+            <CardTitle>Your Detailed Information</CardTitle>
+            <CardDescription>A comprehensive look at your profile.</CardDescription>
+          </CardHeader>
+          <CardContent>
             <Table>
               <TableHeader>
                 <TableRow>
@@ -44,26 +87,15 @@ const TutorDashboard = () => {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {dummyTutors.map((tutor: Tutor) => (
-                  <TableRow key={tutor.id}>
-                    <TableCell className="font-medium">{tutor.name}</TableCell>
-                    <TableCell>{tutor.email}</TableCell>
-                    <TableCell>{tutor.subjects.join(", ")}</TableCell>
-                    <TableCell>{tutor.rating}</TableCell>
-                    <TableCell>{tutor.studentsCount}</TableCell>
-                  </TableRow>
-                ))}
+                <TableRow key={currentUser.id}>
+                  <TableCell className="font-medium">{currentUser.name}</TableCell>
+                  <TableCell>{currentUser.email}</TableCell>
+                  <TableCell>{currentUser.subjects.join(", ")}</TableCell>
+                  <TableCell>{currentUser.rating}</TableCell>
+                  <TableCell>{currentUser.studentsCount}</TableCell>
+                </TableRow>
               </TableBody>
             </Table>
-
-            <div className="flex justify-center space-x-4 mt-8">
-              <Button asChild>
-                <Link to="/">Go to Home</Link>
-              </Button>
-              <Button asChild variant="secondary">
-                <Link to="/login">Go to Login</Link>
-              </Button>
-            </div>
           </CardContent>
         </Card>
       </div>

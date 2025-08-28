@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { dummyWardens, Warden } from "@/data/wardens";
 import Sidebar from "@/components/Sidebar";
-import { HomeIcon, BuildingIcon, UsersIcon, DoorOpenIcon, ChevronLeft } from "lucide-react";
+import { HomeIcon, BuildingIcon, UsersIcon, DoorOpenIcon, ChevronLeft, MaximizeIcon, BedIcon } from "lucide-react";
 
 const wardenNavItems = [
   { href: "/", label: "Home", icon: HomeIcon },
@@ -20,9 +20,10 @@ const WardenDashboard = () => {
 
   return (
     <Sidebar navItems={wardenNavItems} title="Warden Portal" userName={currentUser.name} userEmail={currentUser.email}>
-      <div className="flex flex-col items-center justify-center p-4">
-        <Card className="w-full max-w-4xl">
-          <CardHeader className="relative text-center">
+      <div className="flex flex-col gap-6 p-4 lg:p-6">
+        {/* Welcome Section */}
+        <Card className="w-full">
+          <CardHeader className="relative">
             <Button
               variant="ghost"
               size="icon"
@@ -32,15 +33,57 @@ const WardenDashboard = () => {
               <ChevronLeft className="h-5 w-5" />
               <span className="sr-only">Back</span>
             </Button>
-            <CardTitle className="text-3xl">Warden Dashboard</CardTitle>
-            <CardDescription className="text-center">Overview of Warden information.</CardDescription>
+            <CardTitle className="text-3xl text-center">Welcome, {currentUser.name}!</CardTitle>
+            <CardDescription className="text-center">Overview of your hostel management.</CardDescription>
           </CardHeader>
-          <CardContent className="space-y-6">
+          <CardContent>
             <p className="text-lg text-gray-700 dark:text-gray-300 text-center">
-              Welcome, Warden! Here you can manage hostel gatepass requests and residents.
+              Efficiently manage hostel residents, gatepass requests, and facilities.
             </p>
+          </CardContent>
+        </Card>
 
-            <h2 className="text-2xl font-semibold mt-8 mb-4 text-gray-800 dark:text-gray-200">Your Information</h2>
+        {/* Key Metrics */}
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Hostel</CardTitle>
+              <BuildingIcon className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{currentUser.hostel}</div>
+              <p className="text-xs text-muted-foreground">Your assigned hostel</p>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Total Capacity</CardTitle>
+              <MaximizeIcon className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{currentUser.capacity}</div>
+              <p className="text-xs text-muted-foreground">Maximum residents</p>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Available Beds</CardTitle>
+              <BedIcon className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{currentUser.capacity - currentUser.currentOccupancy}</div>
+              <p className="text-xs text-muted-foreground">Current vacant spots</p>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Your Information Table */}
+        <Card className="w-full">
+          <CardHeader>
+            <CardTitle>Your Detailed Information</CardTitle>
+            <CardDescription>A comprehensive look at your profile.</CardDescription>
+          </CardHeader>
+          <CardContent>
             <Table>
               <TableHeader>
                 <TableRow>
@@ -52,26 +95,15 @@ const WardenDashboard = () => {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {dummyWardens.map((warden: Warden) => (
-                  <TableRow key={warden.id}>
-                    <TableCell className="font-medium">{warden.name}</TableCell>
-                    <TableCell>{warden.email}</TableCell>
-                    <TableCell>{warden.hostel}</TableCell>
-                    <TableCell>{warden.capacity}</TableCell>
-                    <TableCell>{warden.currentOccupancy}</TableCell>
-                  </TableRow>
-                ))}
+                <TableRow key={currentUser.id}>
+                  <TableCell className="font-medium">{currentUser.name}</TableCell>
+                  <TableCell>{currentUser.email}</TableCell>
+                  <TableCell>{currentUser.hostel}</TableCell>
+                  <TableCell>{currentUser.capacity}</TableCell>
+                  <TableCell>{currentUser.currentOccupancy}</TableCell>
+                </TableRow>
               </TableBody>
             </Table>
-
-            <div className="flex justify-center space-x-4 mt-8">
-              <Button asChild>
-                <Link to="/">Go to Home</Link>
-              </Button>
-              <Button asChild variant="secondary">
-                <Link to="/login">Go to Login</Link>
-              </Button>
-            </div>
           </CardContent>
         </Card>
       </div>
