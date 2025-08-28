@@ -1,11 +1,11 @@
 import React from "react";
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/components/ui/card";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; // Import useNavigate
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { dummyWardens, Warden } from "@/data/wardens";
 import Sidebar from "@/components/Sidebar";
-import { HomeIcon, BuildingIcon, UsersIcon, DoorOpenIcon } from "lucide-react";
+import { HomeIcon, BuildingIcon, UsersIcon, DoorOpenIcon, ChevronLeft } from "lucide-react"; // Import ChevronLeft icon
 
 const wardenNavItems = [
   { href: "/", label: "Home", icon: HomeIcon },
@@ -15,12 +15,23 @@ const wardenNavItems = [
 ];
 
 const WardenDashboard = () => {
+  const navigate = useNavigate(); // Initialize useNavigate
+
   return (
     <Sidebar navItems={wardenNavItems} title="Warden Portal">
       <div className="flex flex-col items-center justify-center p-4">
         <Card className="w-full max-w-4xl">
-          <CardHeader>
-            <CardTitle className="text-3xl text-center">Warden Dashboard</CardTitle>
+          <CardHeader className="relative text-center"> {/* Added relative for positioning */}
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => navigate(-1)} // Go back on click
+              className="absolute left-4 top-4" // Position top-left
+            >
+              <ChevronLeft className="h-5 w-5" />
+              <span className="sr-only">Back</span>
+            </Button>
+            <CardTitle className="text-3xl">Warden Dashboard</CardTitle>
             <CardDescription className="text-center">Overview of Warden information.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
