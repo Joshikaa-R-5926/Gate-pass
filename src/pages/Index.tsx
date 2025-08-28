@@ -1,36 +1,95 @@
 import { MadeWithDyad } from "@/components/made-with-dyad";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion"; // Import motion from framer-motion
 
 const Index = () => {
+  const containerVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
+  };
+
+  const buttonVariants = {
+    hover: {
+      scale: 1.05,
+      transition: {
+        duration: 0.2,
+        yoyo: Infinity,
+      },
+    },
+  };
+
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 dark:bg-gray-900 p-4">
-      <div className="text-center mb-8">
-        <h1 className="text-4xl font-bold mb-4 text-gray-900 dark:text-gray-100">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600 dark:text-gray-400">
-          Start building your amazing project here!
-        </p>
-        <div className="mt-6 flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4 flex-wrap justify-center">
-          <Link to="/login">
-            <Button>Go to Login Page</Button>
-          </Link>
-          <Link to="/student-dashboard">
-            <Button variant="outline">Go to Student Dashboard</Button>
-          </Link>
-          <Link to="/tutor-dashboard">
-            <Button variant="outline">Go to Tutor Dashboard</Button>
-          </Link>
-          <Link to="/hod-dashboard">
-            <Button variant="outline">Go to HOD Dashboard</Button>
-          </Link>
-          <Link to="/warden-dashboard">
-            <Button variant="outline">Go to Warden Dashboard</Button>
-          </Link>
-          <Link to="/admin-dashboard">
-            <Button variant="outline">Go to Admin Dashboard</Button>
-          </Link>
-        </div>
-      </div>
+    <div className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden p-4">
+      {/* Animated Gradient Background */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 dark:from-gray-800 dark:via-indigo-900 dark:to-purple-900 animate-gradient-xy"></div>
+
+      <motion.div
+        className="text-center mb-8 z-10"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        <motion.h1
+          className="text-4xl font-bold mb-4 text-gray-900 dark:text-gray-100 md:text-5xl lg:text-6xl"
+          variants={itemVariants}
+        >
+          Welcome to Your Dyad App
+        </motion.h1>
+        <motion.p
+          className="text-xl text-gray-600 dark:text-gray-400 md:text-2xl lg:text-3xl max-w-2xl mx-auto"
+          variants={itemVariants}
+        >
+          Start building your amazing project here! Explore the different dashboards.
+        </motion.p>
+        <motion.div
+          className="mt-8 flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4 flex-wrap justify-center"
+          variants={containerVariants}
+        >
+          <motion.div variants={itemVariants} whileHover="hover">
+            <Link to="/login">
+              <Button className="w-full sm:w-auto px-6 py-3 text-lg">Go to Login Page</Button>
+            </Link>
+          </motion.div>
+          <motion.div variants={itemVariants} whileHover="hover">
+            <Link to="/student-dashboard">
+              <Button variant="outline" className="w-full sm:w-auto px-6 py-3 text-lg">Go to Student Dashboard</Button>
+            </Link>
+          </motion.div>
+          <motion.div variants={itemVariants} whileHover="hover">
+            <Link to="/tutor-dashboard">
+              <Button variant="outline" className="w-full sm:w-auto px-6 py-3 text-lg">Go to Tutor Dashboard</Button>
+            </Link>
+          </motion.div>
+          <motion.div variants={itemVariants} whileHover="hover">
+            <Link to="/hod-dashboard">
+              <Button variant="outline" className="w-full sm:w-auto px-6 py-3 text-lg">Go to HOD Dashboard</Button>
+            </Link>
+          </motion.div>
+          <motion.div variants={itemVariants} whileHover="hover">
+            <Link to="/warden-dashboard">
+              <Button variant="outline" className="w-full sm:w-auto px-6 py-3 text-lg">Go to Warden Dashboard</Button>
+            </Link>
+          </motion.div>
+          <motion.div variants={itemVariants} whileHover="hover">
+            <Link to="/admin-dashboard">
+              <Button variant="outline" className="w-full sm:w-auto px-6 py-3 text-lg">Go to Admin Dashboard</Button>
+            </Link>
+          </motion.div>
+        </motion.div>
+      </motion.div>
       <MadeWithDyad />
     </div>
   );
