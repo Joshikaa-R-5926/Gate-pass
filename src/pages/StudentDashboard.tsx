@@ -1,11 +1,11 @@
 import React from "react";
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/components/ui/card";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; // Import useNavigate
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { dummyStudents, Student } from "@/data/students";
 import Sidebar from "@/components/Sidebar";
-import { HomeIcon, BookOpenIcon, GraduationCapIcon, CalendarIcon, UsersIcon, GridIcon, CalendarDaysIcon } from "lucide-react";
+import { HomeIcon, BookOpenIcon, GraduationCapIcon, CalendarIcon, UsersIcon, CalendarDaysIcon, ChevronLeft } from "lucide-react"; // Import ChevronLeft
 
 const studentNavItems = [
   { href: "/", label: "Home", icon: HomeIcon },
@@ -17,6 +17,7 @@ const studentNavItems = [
 ];
 
 const StudentDashboard = () => {
+  const navigate = useNavigate(); // Initialize useNavigate
   const currentUser = dummyStudents[0]; // Assuming the first student is the current user
 
   return (
@@ -24,12 +25,21 @@ const StudentDashboard = () => {
       <div className="flex flex-col gap-6 p-4 lg:p-6">
         {/* Welcome Section */}
         <Card className="w-full">
-          <CardHeader>
-            <CardTitle className="text-3xl">Welcome, {currentUser.name}!</CardTitle>
-            <CardDescription>Here's an overview of your academic journey.</CardDescription>
+          <CardHeader className="relative"> {/* Add relative positioning */}
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => navigate(-1)}
+              className="absolute left-4 top-4"
+            >
+              <ChevronLeft className="h-5 w-5" />
+              <span className="sr-only">Back</span>
+            </Button>
+            <CardTitle className="text-3xl text-center">Welcome, {currentUser.name}!</CardTitle>
+            <CardDescription className="text-center">Here's an overview of your academic journey.</CardDescription>
           </CardHeader>
           <CardContent>
-            <p className="text-lg text-gray-700 dark:text-gray-300">
+            <p className="text-lg text-gray-700 dark:text-gray-300 text-center">
               Stay on top of your courses, grades, and upcoming activities.
             </p>
           </CardContent>

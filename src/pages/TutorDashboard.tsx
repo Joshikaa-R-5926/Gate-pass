@@ -1,11 +1,11 @@
 import React from "react";
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/components/ui/card";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; // Import useNavigate
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { dummyTutors, Tutor } from "@/data/tutors";
 import Sidebar from "@/components/Sidebar";
-import { HomeIcon, UsersIcon, CalendarIcon, MessageSquareIcon, BookIcon, StarIcon } from "lucide-react";
+import { HomeIcon, UsersIcon, CalendarIcon, MessageSquareIcon, BookIcon, StarIcon, ChevronLeft } from "lucide-react"; // Import ChevronLeft
 
 const tutorNavItems = [
   { href: "/", label: "Home", icon: HomeIcon },
@@ -17,6 +17,7 @@ const tutorNavItems = [
 ];
 
 const TutorDashboard = () => {
+  const navigate = useNavigate(); // Initialize useNavigate
   const currentUser = dummyTutors[0]; // Assuming the first tutor is the current user
 
   return (
@@ -24,12 +25,21 @@ const TutorDashboard = () => {
       <div className="flex flex-col gap-6 p-4 lg:p-6">
         {/* Welcome Section */}
         <Card className="w-full">
-          <CardHeader>
-            <CardTitle className="text-3xl">Welcome, {currentUser.name}!</CardTitle>
-            <CardDescription>Here's an overview of your tutoring activities.</CardDescription>
+          <CardHeader className="relative"> {/* Add relative positioning */}
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => navigate(-1)}
+              className="absolute left-4 top-4"
+            >
+              <ChevronLeft className="h-5 w-5" />
+              <span className="sr-only">Back</span>
+            </Button>
+            <CardTitle className="text-3xl text-center">Welcome, {currentUser.name}!</CardTitle>
+            <CardDescription className="text-center">Here's an overview of your tutoring activities.</CardDescription>
           </CardHeader>
           <CardContent>
-            <p className="text-lg text-gray-700 dark:text-gray-300">
+            <p className="text-lg text-gray-700 dark:text-gray-300 text-center">
               Manage your students, schedule, and resources efficiently.
             </p>
           </CardContent>
