@@ -1,23 +1,23 @@
 import React from "react";
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/components/ui/card";
-import { Link, useNavigate } from "react-router-dom"; // Import useNavigate
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { dummyStudents, Student } from "@/data/students";
 import Sidebar from "@/components/Sidebar";
-import { HomeIcon, BookOpenIcon, GraduationCapIcon, CalendarIcon, UsersIcon, CalendarDaysIcon, ChevronLeft } from "lucide-react"; // Import ChevronLeft
+import { HomeIcon, BookOpenIcon, GraduationCapIcon, CalendarIcon, UsersIcon, CalendarDaysIcon, ChevronLeft, FileTextIcon } from "lucide-react"; // Import FileTextIcon
 
 const studentNavItems = [
   { href: "/", label: "Home", icon: HomeIcon },
   { href: "/student-dashboard", label: "Dashboard", icon: GraduationCapIcon },
   { href: "/student-dashboard/courses", label: "My Courses", icon: BookOpenIcon },
-  { href: "/student-dashboard/grades", label: "Grades", icon: CalendarIcon },
+  { href: "/student-dashboard/requests", label: "My Request", icon: FileTextIcon }, // Changed from Grades to My Request
   { href: "/student-dashboard/schedule", label: "Schedule", icon: CalendarIcon },
   { href: "/student-dashboard/tutors", label: "Find Tutors", icon: UsersIcon },
 ];
 
 const StudentDashboard = () => {
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate();
   const currentUser = dummyStudents[0]; // Assuming the first student is the current user
 
   return (
@@ -25,7 +25,7 @@ const StudentDashboard = () => {
       <div className="flex flex-col gap-6 p-4 lg:p-6">
         {/* Welcome Section */}
         <Card className="w-full">
-          <CardHeader className="relative"> {/* Add relative positioning */}
+          <CardHeader className="relative">
             <Button
               variant="ghost"
               size="icon"
@@ -69,12 +69,12 @@ const StudentDashboard = () => {
           </Card>
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Last Login</CardTitle>
-              <CalendarDaysIcon className="h-4 w-4 text-muted-foreground" />
+              <CardTitle className="text-sm font-medium">My Request</CardTitle> {/* Changed title */}
+              <FileTextIcon className="h-4 w-4 text-muted-foreground" /> {/* Changed icon */}
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{new Date(currentUser.lastLogin).toLocaleDateString()}</div>
-              <p className="text-xs text-muted-foreground">{new Date(currentUser.lastLogin).toLocaleTimeString()}</p>
+              <div className="text-2xl font-bold">No pending requests</div> {/* Placeholder content */}
+              <p className="text-xs text-muted-foreground">View or submit new requests</p>
             </CardContent>
           </Card>
         </div>
@@ -91,7 +91,7 @@ const StudentDashboard = () => {
                 <TableRow>
                   <TableHead>Name</TableHead>
                   <TableHead>Email</TableHead>
-                  <TableHead>Grade</TableHead>
+                  <TableHead>Grade</TableHead> {/* Kept Grade here as it's part of student's core info */}
                   <TableHead>Courses</TableHead>
                   <TableHead>Last Login</TableHead>
                 </TableRow>
