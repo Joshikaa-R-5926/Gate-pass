@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Shield, Search, ChevronLeft, ChevronRight, LucideIcon } from "lucide-react";
-import { Input } from "@/components/ui/input";
+import { Shield, ChevronLeft, ChevronRight, LucideIcon } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
 
@@ -59,17 +58,6 @@ const ModernSidebar: React.FC<ModernSidebarProps> = ({ userName, navItems }) => 
             </motion.span>
           )}
         </AnimatePresence>
-      </div>
-
-      <div className="relative mb-6">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
-        <Input
-          placeholder={isExpanded ? "Search..." : ""}
-          className={cn(
-            "bg-gray-800 border-gray-700 rounded-lg text-white focus:ring-blue-500 transition-all duration-300",
-            isExpanded ? "pl-10" : "pl-2 text-center w-full"
-          )}
-        />
       </div>
 
       <nav className="flex-1 flex flex-col gap-2">
