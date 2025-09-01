@@ -5,13 +5,13 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { dummyAdmins } from "@/data/admins";
 import DashboardLayout from "@/components/DashboardLayout";
-import { ShieldCheckIcon, UsersIcon, ChevronLeft, ClockIcon, Shield, History, User, UserCog, Building, ClipboardUser } from "lucide-react";
+import { ShieldCheckIcon, UsersIcon, ChevronLeft, ClockIcon, Shield, History, User, UserCog, Building, ClipboardList } from "lucide-react";
 
 const navItems = [
   { href: "/admin-dashboard", label: "Admin Dashboard", icon: Shield },
   { href: "#", label: "Manage Students", icon: UsersIcon },
   { href: "#", label: "Manage HODs", icon: UserCog },
-  { href: "#", label: "Manage Tutors", icon: ClipboardUser },
+  { href: "#", label: "Manage Tutors", icon: ClipboardList },
   { href: "#", label: "Manage Wardens", icon: Building },
   { href: "#", label: "Pending Request", icon: ClockIcon },
   { href: "#", label: "Request History", icon: History },
