@@ -5,14 +5,21 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { dummyStudents } from "@/data/students";
 import DashboardLayout from "@/components/DashboardLayout";
-import { BookOpenIcon, GraduationCapIcon, ChevronLeft, FileTextIcon } from "lucide-react";
+import { BookOpenIcon, GraduationCapIcon, ChevronLeft, FileTextIcon, LayoutDashboard, Clock, History, User } from "lucide-react";
+
+const navItems = [
+  { href: "/student-dashboard", label: "Dashboard", icon: LayoutDashboard },
+  { href: "#", label: "Pending Request", icon: Clock },
+  { href: "#", label: "Request History", icon: History },
+  { href: "#", label: "Profile", icon: User },
+];
 
 const StudentDashboard = () => {
   const navigate = useNavigate();
   const currentUser = dummyStudents[0];
 
   return (
-    <DashboardLayout userName={currentUser.name}>
+    <DashboardLayout userName={currentUser.name} navItems={navItems}>
       <div className="flex flex-col gap-6">
         <Card className="w-full bg-white/80 dark:bg-black/50 backdrop-blur-sm">
           <CardHeader className="relative">

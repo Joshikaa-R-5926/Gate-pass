@@ -1,24 +1,23 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Shield, LayoutDashboard, Clock, History, User, Search, ChevronLeft, ChevronRight } from "lucide-react";
+import { Shield, Search, ChevronLeft, ChevronRight, LucideIcon } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
 
-interface ModernSidebarProps {
-  userName: string;
+export interface NavItem {
+  href: string;
+  label: string;
+  icon: LucideIcon;
 }
 
-const navItems = [
-  { href: "/admin-dashboard", label: "Admin Dashboard", icon: Shield },
-  { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
-  { href: "#", label: "Pending Request", icon: Clock },
-  { href: "#", label: "Request History", icon: History },
-  { href: "#", label: "Profile", icon: User },
-];
+interface ModernSidebarProps {
+  userName: string;
+  navItems: NavItem[];
+}
 
-const ModernSidebar: React.FC<ModernSidebarProps> = ({ userName }) => {
+const ModernSidebar: React.FC<ModernSidebarProps> = ({ userName, navItems }) => {
   const [isExpanded, setIsExpanded] = useState(true);
   const location = useLocation();
 
@@ -29,15 +28,6 @@ const ModernSidebar: React.FC<ModernSidebarProps> = ({ userName }) => {
       .join("")
       .toUpperCase();
   };
-
-  const dashboardPath = location.pathname.split('/').filter(Boolean)[0];
-
-  const updatedNavItems = navItems.map(item => {
-    if (item.label === "Dashboard") {
-      return { ...item, href: `/${dashboardPath}` };
-    }
-    return item;
-  });
 
   return (
     <motion.div
@@ -83,7 +73,7 @@ const ModernSidebar: React.FC<ModernSidebarProps> = ({ userName }) => {
       </div>
 
       <nav className="flex-1 flex flex-col gap-2">
-        {updatedNavItems.map((item) => {
+        {navItems.map((item) => {
           const isActive = location.pathname === item.href;
           return (
             <Link

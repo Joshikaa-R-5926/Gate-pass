@@ -5,14 +5,21 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { dummyAdmins } from "@/data/admins";
 import DashboardLayout from "@/components/DashboardLayout";
-import { ShieldCheckIcon, UsersIcon, ChevronLeft, ClockIcon } from "lucide-react";
+import { ShieldCheckIcon, UsersIcon, ChevronLeft, ClockIcon, Shield, History, User } from "lucide-react";
+
+const navItems = [
+  { href: "/admin-dashboard", label: "Admin Dashboard", icon: Shield },
+  { href: "#", label: "Pending Request", icon: ClockIcon },
+  { href: "#", label: "Request History", icon: History },
+  { href: "#", label: "Profile", icon: User },
+];
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
   const currentUser = dummyAdmins[0];
 
   return (
-    <DashboardLayout userName={currentUser.name}>
+    <DashboardLayout userName={currentUser.name} navItems={navItems}>
       <div className="flex flex-col gap-6">
         <Card className="w-full bg-white/80 dark:bg-black/50 backdrop-blur-sm">
           <CardHeader className="relative">

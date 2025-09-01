@@ -5,14 +5,21 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { dummyHODs } from "@/data/hods";
 import DashboardLayout from "@/components/DashboardLayout";
-import { Building2Icon, UsersIcon, SettingsIcon, ChevronLeft, UserCogIcon } from "lucide-react";
+import { Building2Icon, UsersIcon, ChevronLeft, UserCogIcon, LayoutDashboard, Clock, History, User } from "lucide-react";
+
+const navItems = [
+  { href: "/hod-dashboard", label: "Dashboard", icon: LayoutDashboard },
+  { href: "#", label: "Pending Request", icon: Clock },
+  { href: "#", label: "Request History", icon: History },
+  { href: "#", label: "Profile", icon: User },
+];
 
 const HodDashboard = () => {
   const navigate = useNavigate();
   const currentUser = dummyHODs[0];
 
   return (
-    <DashboardLayout userName={currentUser.name}>
+    <DashboardLayout userName={currentUser.name} navItems={navItems}>
       <div className="flex flex-col gap-6">
         <Card className="w-full bg-white/80 dark:bg-black/50 backdrop-blur-sm">
           <CardHeader className="relative">
