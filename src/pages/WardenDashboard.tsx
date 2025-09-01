@@ -1,28 +1,20 @@
 import React from "react";
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/components/ui/card";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { dummyWardens, Warden } from "@/data/wardens";
-import Sidebar from "@/components/Sidebar";
-import { HomeIcon, BuildingIcon, UsersIcon, DoorOpenIcon, ChevronLeft, MaximizeIcon, BedIcon } from "lucide-react";
-
-const wardenNavItems = [
-  { href: "/", label: "Home", icon: HomeIcon },
-  { href: "/warden-dashboard", label: "Dashboard", icon: BuildingIcon },
-  { href: "/warden-dashboard/gatepass", label: "Gatepass Requests", icon: DoorOpenIcon },
-  { href: "/warden-dashboard/residents", label: "Manage Residents", icon: UsersIcon },
-];
+import { dummyWardens } from "@/data/wardens";
+import DashboardLayout from "@/components/DashboardLayout";
+import { BuildingIcon, ChevronLeft, MaximizeIcon, BedIcon } from "lucide-react";
 
 const WardenDashboard = () => {
   const navigate = useNavigate();
-  const currentUser = dummyWardens[0]; // Assuming the first warden is the current user
+  const currentUser = dummyWardens[0];
 
   return (
-    <Sidebar navItems={wardenNavItems} title="Warden Portal" userName={currentUser.name} userEmail={currentUser.email}>
-      <div className="flex flex-col gap-6 p-4 lg:p-6">
-        {/* Welcome Section */}
-        <Card className="w-full">
+    <DashboardLayout userName={currentUser.name}>
+      <div className="flex flex-col gap-6">
+        <Card className="w-full bg-white/80 dark:bg-black/50 backdrop-blur-sm">
           <CardHeader className="relative">
             <Button
               variant="ghost"
@@ -43,9 +35,8 @@ const WardenDashboard = () => {
           </CardContent>
         </Card>
 
-        {/* Key Metrics */}
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          <Card>
+          <Card className="bg-white/80 dark:bg-black/50 backdrop-blur-sm">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Hostel</CardTitle>
               <BuildingIcon className="h-4 w-4 text-muted-foreground" />
@@ -55,7 +46,7 @@ const WardenDashboard = () => {
               <p className="text-xs text-muted-foreground">Your assigned hostel</p>
             </CardContent>
           </Card>
-          <Card>
+          <Card className="bg-white/80 dark:bg-black/50 backdrop-blur-sm">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Total Capacity</CardTitle>
               <MaximizeIcon className="h-4 w-4 text-muted-foreground" />
@@ -65,7 +56,7 @@ const WardenDashboard = () => {
               <p className="text-xs text-muted-foreground">Maximum residents</p>
             </CardContent>
           </Card>
-          <Card>
+          <Card className="bg-white/80 dark:bg-black/50 backdrop-blur-sm">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Available Beds</CardTitle>
               <BedIcon className="h-4 w-4 text-muted-foreground" />
@@ -77,8 +68,7 @@ const WardenDashboard = () => {
           </Card>
         </div>
 
-        {/* Your Information Table */}
-        <Card className="w-full">
+        <Card className="w-full bg-white/80 dark:bg-black/50 backdrop-blur-sm">
           <CardHeader>
             <CardTitle>Your Detailed Information</CardTitle>
             <CardDescription>A comprehensive look at your profile.</CardDescription>
@@ -107,7 +97,7 @@ const WardenDashboard = () => {
           </CardContent>
         </Card>
       </div>
-    </Sidebar>
+    </DashboardLayout>
   );
 };
 

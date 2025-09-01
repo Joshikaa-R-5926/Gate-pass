@@ -1,31 +1,21 @@
 import React from "react";
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/components/ui/card";
-import { Link, useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { dummyTutors, Tutor } from "@/data/tutors";
-import Sidebar from "@/components/Sidebar";
-import { HomeIcon, UsersIcon, CalendarIcon, MessageSquareIcon, BookIcon, StarIcon, ChevronLeft } from "lucide-react"; // Import ChevronLeft
-
-const tutorNavItems = [
-  { href: "/", label: "Home", icon: HomeIcon },
-  { href: "/tutor-dashboard", label: "Dashboard", icon: UsersIcon },
-  { href: "/tutor-dashboard/students", label: "My Students", icon: UsersIcon },
-  { href: "/tutor-dashboard/schedule", label: "Schedule", icon: CalendarIcon },
-  { href: "/tutor-dashboard/messages", label: "Messages", icon: MessageSquareIcon },
-  { href: "/tutor-dashboard/resources", label: "Resources", icon: BookIcon },
-];
+import { dummyTutors } from "@/data/tutors";
+import DashboardLayout from "@/components/DashboardLayout";
+import { UsersIcon, BookIcon, StarIcon, ChevronLeft } from "lucide-react";
 
 const TutorDashboard = () => {
-  const navigate = useNavigate(); // Initialize useNavigate
-  const currentUser = dummyTutors[0]; // Assuming the first tutor is the current user
+  const navigate = useNavigate();
+  const currentUser = dummyTutors[0];
 
   return (
-    <Sidebar navItems={tutorNavItems} title="Tutor Portal" userName={currentUser.name} userEmail={currentUser.email}>
-      <div className="flex flex-col gap-6 p-4 lg:p-6">
-        {/* Welcome Section */}
-        <Card className="w-full">
-          <CardHeader className="relative"> {/* Add relative positioning */}
+    <DashboardLayout userName={currentUser.name}>
+      <div className="flex flex-col gap-6">
+        <Card className="w-full bg-white/80 dark:bg-black/50 backdrop-blur-sm">
+          <CardHeader className="relative">
             <Button
               variant="ghost"
               size="icon"
@@ -45,9 +35,8 @@ const TutorDashboard = () => {
           </CardContent>
         </Card>
 
-        {/* Key Metrics */}
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          <Card>
+          <Card className="bg-white/80 dark:bg-black/50 backdrop-blur-sm">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Total Students</CardTitle>
               <UsersIcon className="h-4 w-4 text-muted-foreground" />
@@ -57,7 +46,7 @@ const TutorDashboard = () => {
               <p className="text-xs text-muted-foreground">Currently assigned students</p>
             </CardContent>
           </Card>
-          <Card>
+          <Card className="bg-white/80 dark:bg-black/50 backdrop-blur-sm">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Average Rating</CardTitle>
               <StarIcon className="h-4 w-4 text-muted-foreground" />
@@ -67,7 +56,7 @@ const TutorDashboard = () => {
               <p className="text-xs text-muted-foreground">Based on student feedback</p>
             </CardContent>
           </Card>
-          <Card>
+          <Card className="bg-white/80 dark:bg-black/50 backdrop-blur-sm">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Subjects Taught</CardTitle>
               <BookIcon className="h-4 w-4 text-muted-foreground" />
@@ -79,8 +68,7 @@ const TutorDashboard = () => {
           </Card>
         </div>
 
-        {/* Your Information Table */}
-        <Card className="w-full">
+        <Card className="w-full bg-white/80 dark:bg-black/50 backdrop-blur-sm">
           <CardHeader>
             <CardTitle>Your Detailed Information</CardTitle>
             <CardDescription>A comprehensive look at your profile.</CardDescription>
@@ -109,7 +97,7 @@ const TutorDashboard = () => {
           </CardContent>
         </Card>
       </div>
-    </Sidebar>
+    </DashboardLayout>
   );
 };
 

@@ -1,28 +1,20 @@
 import React from "react";
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/components/ui/card";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { dummyAdmins, Admin } from "@/data/admins";
-import Sidebar from "@/components/Sidebar";
-import { HomeIcon, ShieldCheckIcon, UsersIcon, SettingsIcon, ChevronLeft, ClockIcon } from "lucide-react";
-
-const adminNavItems = [
-  { href: "/", label: "Home", icon: HomeIcon },
-  { href: "/admin-dashboard", label: "Dashboard", icon: ShieldCheckIcon },
-  { href: "/admin-dashboard/users", label: "Manage Users", icon: UsersIcon },
-  { href: "/admin-dashboard/system", label: "System Settings", icon: SettingsIcon },
-];
+import { dummyAdmins } from "@/data/admins";
+import DashboardLayout from "@/components/DashboardLayout";
+import { ShieldCheckIcon, UsersIcon, ChevronLeft, ClockIcon } from "lucide-react";
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
-  const currentUser = dummyAdmins[0]; // Assuming the first admin is the current user
+  const currentUser = dummyAdmins[0];
 
   return (
-    <Sidebar navItems={adminNavItems} title="Admin Portal" userName={currentUser.name} userEmail={currentUser.email}>
-      <div className="flex flex-col gap-6 p-4 lg:p-6">
-        {/* Welcome Section */}
-        <Card className="w-full">
+    <DashboardLayout userName={currentUser.name}>
+      <div className="flex flex-col gap-6">
+        <Card className="w-full bg-white/80 dark:bg-black/50 backdrop-blur-sm">
           <CardHeader className="relative">
             <Button
               variant="ghost"
@@ -43,9 +35,8 @@ const AdminDashboard = () => {
           </CardContent>
         </Card>
 
-        {/* Key Metrics */}
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          <Card>
+          <Card className="bg-white/80 dark:bg-black/50 backdrop-blur-sm">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Your Role</CardTitle>
               <ShieldCheckIcon className="h-4 w-4 text-muted-foreground" />
@@ -55,7 +46,7 @@ const AdminDashboard = () => {
               <p className="text-xs text-muted-foreground">Your current administrative role</p>
             </CardContent>
           </Card>
-          <Card>
+          <Card className="bg-white/80 dark:bg-black/50 backdrop-blur-sm">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Last Activity</CardTitle>
               <ClockIcon className="h-4 w-4 text-muted-foreground" />
@@ -65,20 +56,19 @@ const AdminDashboard = () => {
               <p className="text-xs text-muted-foreground">{new Date(currentUser.lastActivity).toLocaleTimeString()}</p>
             </CardContent>
           </Card>
-          <Card>
+          <Card className="bg-white/80 dark:bg-black/50 backdrop-blur-sm">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Total Users</CardTitle>
               <UsersIcon className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">50+</div> {/* Dummy data */}
+              <div className="text-2xl font-bold">50+</div>
               <p className="text-xs text-muted-foreground">Across all roles</p>
             </CardContent>
           </Card>
         </div>
 
-        {/* Your Information Table */}
-        <Card className="w-full">
+        <Card className="w-full bg-white/80 dark:bg-black/50 backdrop-blur-sm">
           <CardHeader>
             <CardTitle>Your Detailed Information</CardTitle>
             <CardDescription>A comprehensive look at your profile.</CardDescription>
@@ -105,7 +95,7 @@ const AdminDashboard = () => {
           </CardContent>
         </Card>
       </div>
-    </Sidebar>
+    </DashboardLayout>
   );
 };
 
