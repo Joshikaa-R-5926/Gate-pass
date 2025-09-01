@@ -5,10 +5,11 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { dummyHODs } from "@/data/hods";
 import DashboardLayout from "@/components/DashboardLayout";
-import { Building2Icon, UsersIcon, ChevronLeft, UserCogIcon, LayoutDashboard, Clock, History, User } from "lucide-react";
+import { Building2Icon, UsersIcon, ChevronLeft, UserCogIcon, LayoutDashboard, Clock, History, User, Home } from "lucide-react";
 
 const navItems = [
   { href: "/hod-dashboard", label: "Dashboard", icon: LayoutDashboard },
+  { href: "#", label: "Hostellers", icon: Home },
   { href: "#", label: "Pending Request", icon: Clock },
   { href: "#", label: "Request History", icon: History },
   { href: "#", label: "Profile", icon: User },
