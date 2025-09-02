@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Shield, ChevronLeft, ChevronRight, LucideIcon } from "lucide-react";
+import { Shield, ChevronLeft, ChevronRight, LucideIcon, LogOut } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
 
@@ -19,6 +19,7 @@ interface ModernSidebarProps {
 const ModernSidebar: React.FC<ModernSidebarProps> = ({ userName, navItems }) => {
   const [isExpanded, setIsExpanded] = useState(true);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const getInitials = (name: string) => {
     return name
@@ -26,6 +27,10 @@ const ModernSidebar: React.FC<ModernSidebarProps> = ({ userName, navItems }) => 
       .map((n) => n[0])
       .join("")
       .toUpperCase();
+  };
+
+  const handleLogout = () => {
+    navigate("/login");
   };
 
   return (
@@ -94,8 +99,8 @@ const ModernSidebar: React.FC<ModernSidebarProps> = ({ userName, navItems }) => 
         })}
       </nav>
 
-      <div className="mt-auto border-t border-gray-700 pt-4">
-        <div className="flex items-center gap-3">
+      <div className="mt-auto border-t border-gray-700 pt-4 flex flex-col gap-2">
+        <div className="flex items-center gap-3 px-3">
           <Avatar>
             <AvatarImage src={`https://ui-avatars.com/api/?name=${userName.replace(' ', '+')}&background=0D8ABC&color=fff`} />
             <AvatarFallback>{getInitials(userName)}</AvatarFallback>
@@ -115,6 +120,30 @@ const ModernSidebar: React.FC<ModernSidebarProps> = ({ userName, navItems }) => 
             )}
           </AnimatePresence>
         </div>
+        <button
+          onClick={handleLogout}
+          className={cn(
+            "flex items-center gap-4 p-3 rounded-lg transition-colors w-full",
+            "text-red-400 hover:bg-red-900/50 hover:text-red-300",
+            !isExpanded && "justify-center"
+          )}
+          title={isExpanded ? "" : "Logout"}
+        >
+          <LogOut size={20} />
+          <AnimatePresence>
+            {isExpanded && (
+              <motion.span
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.2 }}
+                className="font-semibold whitespace-nowrap"
+              >
+                Logout
+              </motion.span>
+            )}
+          </AnimatePresence>
+        </button>
       </div>
     </motion.div>
   );
