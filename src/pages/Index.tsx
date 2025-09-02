@@ -150,7 +150,7 @@ const Index = () => {
                 </div>
               </div>
               <div>
-                <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="University students on campus" className="rounded-lg shadow-lg object-cover h-full w-full" />
+                <img src="https://images.unsplash.com/photo-1627556704290-2b1f58500c8a?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Modern university entrance" className="rounded-lg shadow-lg object-cover h-full w-full" />
               </div>
             </div>
           </div>
