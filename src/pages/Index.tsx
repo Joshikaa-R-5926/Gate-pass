@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { ShieldCheck, Smartphone, BarChart, Zap } from "lucide-react";
-import { MadeWithDyad } from "@/components/made-with-dyad";
 
 const Index = () => {
   const containerVariants = {
@@ -126,7 +125,6 @@ const Index = () => {
       <footer className="border-t py-8">
         <div className="container text-center text-gray-500">
           <p>&copy; {new Date().getFullYear()} GatePass Pro. All rights reserved.</p>
-          <MadeWithDyad />
         </div>
       </footer>
     </div>

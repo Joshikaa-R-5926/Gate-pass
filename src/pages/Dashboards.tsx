@@ -1,4 +1,3 @@
-import { MadeWithDyad } from "@/components/made-with-dyad";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
@@ -79,7 +78,6 @@ const Dashboards = () => {
           </motion.div>
         </motion.div>
       </motion.div>
-      <MadeWithDyad />
     </div>
   );
 };
