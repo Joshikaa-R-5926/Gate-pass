@@ -11,7 +11,7 @@ import { dummyTutors } from "@/data/tutors";
 import { dummyHODs } from "@/data/hods";
 import { dummyWardens } from "@/data/wardens";
 import { dummyAdmins } from "@/data/admins";
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, ChevronLeft } from "lucide-react";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -40,7 +40,16 @@ const Login = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900">
       <Card className="w-[350px]">
-        <CardHeader className="text-center">
+        <CardHeader className="relative text-center">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => navigate(-1)}
+            className="absolute left-4 top-4"
+          >
+            <ChevronLeft className="h-5 w-5" />
+            <span className="sr-only">Back</span>
+          </Button>
           <CardTitle className="text-2xl">Login</CardTitle>
           <CardDescription>Enter your credentials to access your account.</CardDescription>
         </CardHeader>
