@@ -69,7 +69,7 @@ const Index = () => {
       </header>
 
       <main>
-        <section id="home" className="py-20 md:py-32 bg-white dark:bg-gray-950">
+        <section id="home" className="py-20 md:py-32 bg-gray-100 dark:bg-gray-900">
           <motion.div
             className="container grid lg:grid-cols-2 gap-12 items-center"
             variants={containerVariants}
@@ -110,7 +110,7 @@ const Index = () => {
           </motion.div>
         </section>
 
-        <section id="features" className="py-20 md:py-28 bg-gray-50 dark:bg-gray-900">
+        <section id="features" className="py-20 md:py-28 bg-white dark:bg-gray-950">
           <div className="container">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">A Smarter Way to Manage Gate Passes</h2>
@@ -128,7 +128,7 @@ const Index = () => {
               {features.map((feature, index) => (
                 <motion.div
                   key={index}
-                  className="p-6 bg-white dark:bg-gray-800/50 rounded-lg shadow-sm text-center transition-transform transform hover:-translate-y-2"
+                  className="p-6 bg-gray-100 dark:bg-gray-900 rounded-lg shadow-sm text-center transition-transform transform hover:-translate-y-2"
                   variants={itemVariants}
                 >
                   <div className="flex justify-center mb-4">{feature.icon}</div>
@@ -140,11 +140,11 @@ const Index = () => {
           </div>
         </section>
 
-        <section id="about" className="py-20 md:py-28 bg-white dark:bg-gray-950">
+        <section id="about" className="py-20 md:py-28 bg-gray-100 dark:bg-gray-900">
           <div className="container grid md:grid-cols-2 gap-12 items-center">
             <motion.div variants={itemVariants}>
               <img 
-                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071&auto=format=fit&crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
                 alt="Students collaborating" 
                 className="rounded-xl shadow-lg"
               />
@@ -158,7 +158,7 @@ const Index = () => {
           </div>
         </section>
 
-        <section id="contact" className="py-20 md:py-28 bg-gray-50 dark:bg-gray-900">
+        <section id="contact" className="py-20 md:py-28 bg-white dark:bg-gray-950">
           <div className="container">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Get In Touch</h2>
