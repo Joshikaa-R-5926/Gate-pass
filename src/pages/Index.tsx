@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { ShieldCheck, Smartphone, BarChart, Zap } from "lucide-react";
+import { ShieldCheck, Smartphone, BarChart, Zap, Mail, Phone, MapPin } from "lucide-react";
 
 const Index = () => {
   const containerVariants = {
@@ -22,24 +22,24 @@ const Index = () => {
 
   const features = [
     {
-      icon: <Zap className="h-8 w-8 text-blue-500" />,
-      title: "Streamlined Requests",
-      description: "Students can request gate passes in seconds through an intuitive interface.",
+      icon: <ShieldCheck className="h-8 w-8 text-green-500" />,
+      title: "Secure",
+      description: "Multi-level approval workflow ensures maximum security and accountability.",
     },
     {
-      icon: <ShieldCheck className="h-8 w-8 text-green-500" />,
-      title: "Secure Approvals",
-      description: "Multi-level approval workflow for wardens, tutors, and HODs ensures security.",
+      icon: <Zap className="h-8 w-8 text-blue-500" />,
+      title: "Fast",
+      description: "Students can request gate passes in seconds through an intuitive, streamlined interface.",
+    },
+    {
+      icon: <BarChart className="h-8 w-8 text-orange-500" />,
+      title: "Dashboard",
+      description: "Admins get a comprehensive overview with detailed reports and analytics.",
     },
     {
       icon: <Smartphone className="h-8 w-8 text-purple-500" />,
       title: "Mobile Friendly",
-      description: "Access and manage gate passes on the go from any device.",
-    },
-    {
-      icon: <BarChart className="h-8 w-8 text-orange-500" />,
-      title: "Insightful Analytics",
-      description: "Admins get a comprehensive overview with detailed reports and dashboards.",
+      description: "Access and manage gate passes on the go from any device, anytime.",
     },
   ];
 
@@ -51,19 +51,21 @@ const Index = () => {
             <ShieldCheck className="h-6 w-6 text-blue-600" />
             <span className="font-bold text-lg">GatePass Pro</span>
           </Link>
-          <nav className="flex items-center gap-4">
+          <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
+            <a href="#home" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">Home</a>
+            <a href="#features" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">Features</a>
+            <a href="#contact" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">Contact</a>
+          </nav>
+          <div className="flex items-center gap-4">
             <Link to="/login">
               <Button>Login</Button>
             </Link>
-            <Link to="/dashboards">
-              <Button variant="outline">View Dashboards</Button>
-            </Link>
-          </nav>
+          </div>
         </div>
       </header>
 
       <main>
-        <section className="relative py-20 md:py-32">
+        <section id="home" className="relative py-20 md:py-32">
           <div className="absolute inset-0 -z-10 bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 dark:from-gray-800 dark:via-indigo-900 dark:to-purple-900 animate-gradient-xy"></div>
           <motion.div
             className="container text-center"
@@ -85,7 +87,7 @@ const Index = () => {
             </motion.p>
             <motion.div className="mt-8 flex justify-center gap-4" variants={itemVariants}>
               <Link to="/login">
-                <Button size="lg" className="text-lg px-8 py-6">Get Started</Button>
+                <Button size="lg" className="text-lg px-8 py-6 hover:scale-105 transition-transform">Get Started</Button>
               </Link>
             </motion.div>
           </motion.div>
@@ -109,7 +111,7 @@ const Index = () => {
               {features.map((feature, index) => (
                 <motion.div
                   key={index}
-                  className="p-6 bg-gray-100 dark:bg-gray-800/50 rounded-lg shadow-sm text-center"
+                  className="p-6 bg-gray-100 dark:bg-gray-800/50 rounded-lg shadow-sm text-center transition-transform transform hover:-translate-y-2"
                   variants={itemVariants}
                 >
                   <div className="flex justify-center mb-4">{feature.icon}</div>
@@ -120,11 +122,46 @@ const Index = () => {
             </motion.div>
           </div>
         </section>
+
+        <section id="contact" className="py-20 md:py-28 bg-gray-50 dark:bg-gray-900">
+          <div className="container">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Get In Touch</h2>
+              <p className="mt-4 text-lg text-gray-600 dark:text-gray-400">
+                We'd love to hear from you. Contact us for any inquiries.
+              </p>
+            </div>
+            <div className="max-w-4xl mx-auto grid gap-8 md:grid-cols-3 text-center">
+                <div className="flex flex-col items-center">
+                    <Mail className="h-8 w-8 mb-2 text-blue-500"/>
+                    <h3 className="font-semibold">Email</h3>
+                    <p className="text-gray-600 dark:text-gray-400">support@gatepasspro.com</p>
+                </div>
+                <div className="flex flex-col items-center">
+                    <Phone className="h-8 w-8 mb-2 text-blue-500"/>
+                    <h3 className="font-semibold">Phone</h3>
+                    <p className="text-gray-600 dark:text-gray-400">+1 (234) 567-890</p>
+                </div>
+                <div className="flex flex-col items-center">
+                    <MapPin className="h-8 w-8 mb-2 text-blue-500"/>
+                    <h3 className="font-semibold">Address</h3>
+                    <p className="text-gray-600 dark:text-gray-400">123 Tech Avenue, Silicon Valley</p>
+                </div>
+            </div>
+          </div>
+        </section>
       </main>
 
-      <footer className="border-t py-8">
-        <div className="container text-center text-gray-500">
-          <p>&copy; {new Date().getFullYear()} GatePass Pro. All rights reserved.</p>
+      <footer className="border-t bg-white dark:bg-gray-950">
+        <div className="container py-8 flex flex-col md:flex-row justify-between items-center">
+          <div className="mb-4 md:mb-0">
+            <p className="text-sm text-gray-500">&copy; {new Date().getFullYear()} GatePass Pro. All rights reserved.</p>
+          </div>
+          <div className="flex gap-6 text-sm">
+            <a href="#" className="text-gray-600 dark:text-gray-400 hover:underline">About</a>
+            <a href="#" className="text-gray-600 dark:text-gray-400 hover:underline">Privacy</a>
+            <a href="#contact" className="text-gray-600 dark:text-gray-400 hover:underline">Contact</a>
+          </div>
         </div>
       </footer>
     </div>
