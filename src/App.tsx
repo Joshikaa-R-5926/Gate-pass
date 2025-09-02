@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
 import StudentDashboard from "./pages/StudentDashboard";
 import TutorDashboard from "./pages/TutorDashboard";
 import HodDashboard from "./pages/HodDashboard";
@@ -19,7 +20,7 @@ import PendingRequest from "./pages/PendingRequest";
 import RequestHistory from "./pages/RequestHistory";
 import Profile from "./pages/Profile";
 import Hostellers from "./pages/Hostellers";
-import Dashboards from "./pages/Dashboards"; // New import
+import Dashboards from "./pages/Dashboards";
 
 const queryClient = new QueryClient();
 
@@ -31,8 +32,9 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/dashboards" element={<Dashboards />} /> {/* New route */}
+          <Route path="/dashboards" element={<Dashboards />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
           <Route path="/student-dashboard" element={<StudentDashboard />} />
           <Route path="/tutor-dashboard" element={<TutorDashboard />} />
           <Route path="/hod-dashboard" element={<HodDashboard />} />

@@ -59,7 +59,10 @@ const Index = () => {
           </nav>
           <div className="flex items-center gap-4">
             <Link to="/login">
-              <Button>Sign In</Button>
+              <Button>Login</Button>
+            </Link>
+            <Link to="/signup">
+              <Button variant="outline">Sign Up</Button>
             </Link>
           </div>
         </div>
