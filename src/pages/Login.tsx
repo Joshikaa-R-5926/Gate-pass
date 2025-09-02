@@ -6,34 +6,68 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { showError } from "@/utils/toast";
-import { dummyStudents } from "@/data/students";
-import { dummyTutors } from "@/data/tutors";
-import { dummyHODs } from "@/data/hods";
-import { dummyWardens } from "@/data/wardens";
-import { dummyAdmins } from "@/data/admins";
 import { Eye, EyeOff, ChevronLeft } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
 const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
 
-    if (dummyStudents.some((user) => user.email === email)) {
-      navigate("/student-dashboard");
-    } else if (dummyTutors.some((user) => user.email === email)) {
-      navigate("/tutor-dashboard");
-    } else if (dummyHODs.some((user) => user.email === email)) {
-      navigate("/hod-dashboard");
-    } else if (dummyWardens.some((user) => user.email === email)) {
-      navigate("/warden-dashboard");
-    } else if (dummyAdmins.some((user) => user.email === email)) {
-      navigate("/admin-dashboard");
-    } else {
-      showError("Invalid email or password. Please try again.");
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+
+    if (error) {
+      setLoading(false);
+      showError(error.message);
+      return;
+    }
+
+    if (data.user) {
+      const { data: profile, error: profileError } = await supabase
+        .from("profiles")
+        .select("role")
+        .eq("id", data.user.id)
+        .single();
+
+      setLoading(false);
+
+      if (profileError) {
+        showError("Could not fetch user profile. Please try again.");
+        await supabase.auth.signOut();
+        return;
+      }
+
+      if (profile) {
+        switch (profile.role.toLowerCase()) {
+          case "student":
+            navigate("/student-dashboard");
+            break;
+          case "tutor":
+            navigate("/tutor-dashboard");
+            break;
+          case "hod":
+            navigate("/hod-dashboard");
+            break;
+          case "warden":
+            navigate("/warden-dashboard");
+            break;
+          case "admin":
+            navigate("/admin-dashboard");
+            break;
+          default:
+            showError("Unknown user role.");
+            navigate("/");
+        }
+      }
     }
   };
 
@@ -86,8 +120,8 @@ const Login = () => {
                 </button>
               </div>
             </div>
-            <Button type="submit" className="w-full">
-              Login
+            <Button type="submit" className="w-full" disabled={loading}>
+              {loading ? "Logging in..." : "Login"}
             </Button>
           </form>
           <div className="mt-4 text-center text-sm">

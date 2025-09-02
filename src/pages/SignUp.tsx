@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { showError, showSuccess } from "@/utils/toast";
 import { Eye, EyeOff, ChevronLeft } from "lucide-react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { supabase } from "@/integrations/supabase/client";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -18,8 +19,9 @@ const SignUp = () => {
   const [role, setRole] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (password !== confirmPassword) {
       showError("Passwords do not match.");
@@ -29,10 +31,29 @@ const SignUp = () => {
       showError("Please select a role.");
       return;
     }
-    // Here you would typically handle the signup logic, e.g., API call
-    console.log({ name, email, password, role });
-    showSuccess("Account created successfully! Please log in.");
-    navigate("/login");
+    setLoading(true);
+    const [firstName, ...lastNameParts] = name.split(" ");
+    const lastName = lastNameParts.join(" ");
+
+    const { error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: {
+          first_name: firstName,
+          last_name: lastName,
+          role: role,
+        },
+      },
+    });
+
+    setLoading(false);
+    if (error) {
+      showError(error.message);
+    } else {
+      showSuccess("Success! Please check your email to verify your account.");
+      navigate("/login");
+    }
   };
 
   return (
@@ -122,16 +143,16 @@ const SignUp = () => {
                   <SelectValue placeholder="Select your role" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="student">Student</SelectItem>
-                  <SelectItem value="tutor">Tutor</SelectItem>
-                  <SelectItem value="hod">HOD</SelectItem>
-                  <SelectItem value="warden">Warden</SelectItem>
-                  <SelectItem value="admin">Admin</SelectItem>
+                  <SelectItem value="Student">Student</SelectItem>
+                  <SelectItem value="Tutor">Tutor</SelectItem>
+                  <SelectItem value="HOD">HOD</SelectItem>
+                  <SelectItem value="Warden">Warden</SelectItem>
+                  <SelectItem value="Admin">Admin</SelectItem>
                 </SelectContent>
               </Select>
             </div>
-            <Button type="submit" className="w-full">
-              Create Account
+            <Button type="submit" className="w-full" disabled={loading}>
+              {loading ? "Creating Account..." : "Create Account"}
             </Button>
           </form>
           <div className="mt-4 text-center text-sm">
