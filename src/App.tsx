@@ -8,17 +8,9 @@ import NotFound from "./pages/NotFound";
 import Login from "./pages/Login";
 import StudentDashboard from "./pages/StudentDashboard";
 import TutorDashboard from "./pages/TutorDashboard";
-import HodDashboard from "./pages/HodDashboard";
-import WardenDashboard from "./pages/WardenDashboard";
-import AdminDashboard from "./pages/AdminDashboard";
-import ManageStudentsPage from "./pages/ManageStudentsPage";
-import ManageHodsPage from "./pages/ManageHodsPage";
-import ManageTutorsPage from "./pages/ManageTutorsPage";
-import ManageWardensPage from "./pages/ManageWardensPage";
-import PendingRequestsPage from "./pages/PendingRequestsPage";
-import RequestHistoryPage from "./pages/RequestHistoryPage";
-import ProfilePage from "./pages/ProfilePage";
-import HostellersPage from "./pages/HostellersPage";
+import HodDashboard from "./pages/HodDashboard";       // Import HodDashboard
+import WardenDashboard from "./pages/WardenDashboard"; // Import WardenDashboard
+import AdminDashboard from "./pages/AdminDashboard";   // Import AdminDashboard
 
 const queryClient = new QueryClient();
 
@@ -33,17 +25,9 @@ const App = () => (
           <Route path="/login" element={<Login />} />
           <Route path="/student-dashboard" element={<StudentDashboard />} />
           <Route path="/tutor-dashboard" element={<TutorDashboard />} />
-          <Route path="/hod-dashboard" element={<HodDashboard />} />
-          <Route path="/warden-dashboard" element={<WardenDashboard />} />
-          <Route path="/admin-dashboard" element={<AdminDashboard />} />
-          <Route path="/manage-students" element={<ManageStudentsPage />} />
-          <Route path="/manage-hods" element={<ManageHodsPage />} />
-          <Route path="/manage-tutors" element={<ManageTutorsPage />} />
-          <Route path="/manage-wardens" element={<ManageWardensPage />} />
-          <Route path="/pending-requests" element={<PendingRequestsPage />} />
-          <Route path="/request-history" element={<RequestHistoryPage />} />
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/hostellers" element={<HostellersPage />} />
+          <Route path="/hod-dashboard" element={<HodDashboard />} />         {/* Add HOD Dashboard route */}
+          <Route path="/warden-dashboard" element={<WardenDashboard />} />   {/* Add Warden Dashboard route */}
+          <Route path="/admin-dashboard" element={<AdminDashboard />} />     {/* Add Admin Dashboard route */}
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

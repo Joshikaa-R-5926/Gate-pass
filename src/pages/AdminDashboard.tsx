@@ -9,13 +9,13 @@ import { ShieldCheckIcon, UsersIcon, ChevronLeft, ClockIcon, Shield, History, Us
 
 const navItems = [
   { href: "/admin-dashboard", label: "Admin Dashboard", icon: Shield },
-  { href: "/manage-students", label: "Manage Students", icon: UsersIcon },
-  { href: "/manage-hods", label: "Manage HODs", icon: UserCog },
-  { href: "/manage-tutors", label: "Manage Tutors", icon: ClipboardList },
-  { href: "/manage-wardens", label: "Manage Wardens", icon: Building },
-  { href: "/pending-requests", label: "Pending Request", icon: ClockIcon },
-  { href: "/request-history", label: "Request History", icon: History },
-  { href: "/profile", label: "Profile", icon: User },
+  { href: "#", label: "Manage Students", icon: UsersIcon },
+  { href: "#", label: "Manage HODs", icon: UserCog },
+  { href: "#", label: "Manage Tutors", icon: ClipboardList },
+  { href: "#", label: "Manage Wardens", icon: Building },
+  { href: "#", label: "Pending Request", icon: ClockIcon },
+  { href: "#", label: "Request History", icon: History },
+  { href: "#", label: "Profile", icon: User },
 ];
 
 const AdminDashboard = () => {

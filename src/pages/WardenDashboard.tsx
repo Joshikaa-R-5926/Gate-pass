@@ -9,9 +9,9 @@ import { BuildingIcon, ChevronLeft, MaximizeIcon, BedIcon, LayoutDashboard, Cloc
 
 const navItems = [
   { href: "/warden-dashboard", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/pending-requests", label: "Pending Request", icon: Clock },
-  { href: "/request-history", label: "Request History", icon: History },
-  { href: "/profile", label: "Profile", icon: User },
+  { href: "#", label: "Pending Request", icon: Clock },
+  { href: "#", label: "Request History", icon: History },
+  { href: "#", label: "Profile", icon: User },
 ];
 
 const WardenDashboard = () => {
