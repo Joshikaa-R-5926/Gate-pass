@@ -9,10 +9,10 @@ import { UsersIcon, BookIcon, StarIcon, ChevronLeft, LayoutDashboard, Clock, His
 
 const navItems = [
   { href: "/tutor-dashboard", label: "Dashboard", icon: LayoutDashboard },
-  { href: "#", label: "Hostellers", icon: Home },
-  { href: "#", label: "Pending Request", icon: Clock },
-  { href: "#", label: "Request History", icon: History },
-  { href: "#", label: "Profile", icon: User },
+  { href: "/hostellers", label: "Hostellers", icon: Home },
+  { href: "/pending-requests", label: "Pending Request", icon: Clock },
+  { href: "/request-history", label: "Request History", icon: History },
+  { href: "/profile", label: "Profile", icon: User },
 ];
 
 const TutorDashboard = () => {
