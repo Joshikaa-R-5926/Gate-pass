@@ -11,14 +11,15 @@ import TutorDashboard from "./pages/TutorDashboard";
 import HodDashboard from "./pages/HodDashboard";
 import WardenDashboard from "./pages/WardenDashboard";
 import AdminDashboard from "./pages/AdminDashboard";
-import ManageStudents from "./pages/ManageStudents"; // New import
-import ManageHODs from "./pages/ManageHODs";         // New import
-import ManageTutors from "./pages/ManageTutors";     // New import
-import ManageWardens from "./pages/ManageWardens";   // New import
-import PendingRequest from "./pages/PendingRequest"; // New import
-import RequestHistory from "./pages/RequestHistory"; // New import
-import Profile from "./pages/Profile";               // New import
-import Hostellers from "./pages/Hostellers";         // New import
+import ManageStudents from "./pages/ManageStudents";
+import ManageHODs from "./pages/ManageHODs";
+import ManageTutors from "./pages/ManageTutors";
+import ManageWardens from "./pages/ManageWardens";
+import PendingRequest from "./pages/PendingRequest";
+import RequestHistory from "./pages/RequestHistory";
+import Profile from "./pages/Profile";
+import Hostellers from "./pages/Hostellers";
+import Dashboards from "./pages/Dashboards"; // New import
 
 const queryClient = new QueryClient();
 
@@ -30,20 +31,21 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/dashboards" element={<Dashboards />} /> {/* New route */}
           <Route path="/login" element={<Login />} />
           <Route path="/student-dashboard" element={<StudentDashboard />} />
           <Route path="/tutor-dashboard" element={<TutorDashboard />} />
           <Route path="/hod-dashboard" element={<HodDashboard />} />
           <Route path="/warden-dashboard" element={<WardenDashboard />} />
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
-          <Route path="/manage-students" element={<ManageStudents />} />     {/* New route */}
-          <Route path="/manage-hods" element={<ManageHODs />} />             {/* New route */}
-          <Route path="/manage-tutors" element={<ManageTutors />} />         {/* New route */}
-          <Route path="/manage-wardens" element={<ManageWardens />} />       {/* New route */}
-          <Route path="/pending-request" element={<PendingRequest />} />     {/* New route */}
-          <Route path="/request-history" element={<RequestHistory />} />     {/* New route */}
-          <Route path="/profile" element={<Profile />} />                   {/* New route */}
-          <Route path="/hostellers" element={<Hostellers />} />             {/* New route */}
+          <Route path="/manage-students" element={<ManageStudents />} />
+          <Route path="/manage-hods" element={<ManageHODs />} />
+          <Route path="/manage-tutors" element={<ManageTutors />} />
+          <Route path="/manage-wardens" element={<ManageWardens />} />
+          <Route path="/pending-request" element={<PendingRequest />} />
+          <Route path="/request-history" element={<RequestHistory />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/hostellers" element={<Hostellers />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
