@@ -69,14 +69,9 @@ const Index = () => {
       </header>
 
       <main>
-        <section id="home" className="relative py-20 md:py-32 overflow-hidden">
-          <div className="absolute inset-0 -z-10 bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 dark:from-indigo-900 dark:via-purple-900 dark:to-pink-900"></div>
-          <div className="absolute top-0 -left-4 w-72 h-72 bg-purple-300/50 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
-          <div className="absolute top-0 -right-4 w-72 h-72 bg-indigo-300/50 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
-          <div className="absolute -bottom-8 left-20 w-72 h-72 bg-pink-300/50 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
-          
+        <section id="home" className="py-20 md:py-32 bg-white dark:bg-gray-950">
           <motion.div
-            className="relative z-10 container grid lg:grid-cols-2 gap-12 items-center"
+            className="container grid lg:grid-cols-2 gap-12 items-center"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
@@ -86,7 +81,7 @@ const Index = () => {
                 className="text-5xl font-extrabold tracking-tight lg:text-7xl text-gray-900 dark:text-gray-100"
                 variants={itemVariants}
               >
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-purple-500">
+                <span className="text-blue-600 dark:text-blue-500">
                   Effortless
                 </span> Hostel Gate Pass Management
               </motion.h1>
@@ -101,7 +96,7 @@ const Index = () => {
                   <Button size="lg" className="text-lg px-8 py-6 w-full sm:w-auto hover:scale-105 transition-transform">Get Started</Button>
                 </Link>
                 <a href="#features">
-                  <Button size="lg" variant="outline" className="text-lg px-8 py-6 w-full sm:w-auto hover:scale-105 transition-transform bg-white/50 dark:bg-gray-900/50">Learn More</Button>
+                  <Button size="lg" variant="outline" className="text-lg px-8 py-6 w-full sm:w-auto hover:scale-105 transition-transform bg-transparent">Learn More</Button>
                 </a>
               </motion.div>
             </div>
@@ -115,7 +110,7 @@ const Index = () => {
           </motion.div>
         </section>
 
-        <section id="features" className="py-20 md:py-28 bg-white dark:bg-gray-950">
+        <section id="features" className="py-20 md:py-28 bg-gray-50 dark:bg-gray-900">
           <div className="container">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">A Smarter Way to Manage Gate Passes</h2>
@@ -133,7 +128,7 @@ const Index = () => {
               {features.map((feature, index) => (
                 <motion.div
                   key={index}
-                  className="p-6 bg-gray-100 dark:bg-gray-800/50 rounded-lg shadow-sm text-center transition-transform transform hover:-translate-y-2"
+                  className="p-6 bg-white dark:bg-gray-800/50 rounded-lg shadow-sm text-center transition-transform transform hover:-translate-y-2"
                   variants={itemVariants}
                 >
                   <div className="flex justify-center mb-4">{feature.icon}</div>
@@ -145,7 +140,7 @@ const Index = () => {
           </div>
         </section>
 
-        <section id="about" className="py-20 md:py-28 bg-gray-50 dark:bg-gray-900">
+        <section id="about" className="py-20 md:py-28 bg-white dark:bg-gray-950">
           <div className="container grid md:grid-cols-2 gap-12 items-center">
             <motion.div variants={itemVariants}>
               <img 
@@ -163,7 +158,7 @@ const Index = () => {
           </div>
         </section>
 
-        <section id="contact" className="py-20 md:py-28 bg-white dark:bg-gray-950">
+        <section id="contact" className="py-20 md:py-28 bg-gray-50 dark:bg-gray-900">
           <div className="container">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Get In Touch</h2>
