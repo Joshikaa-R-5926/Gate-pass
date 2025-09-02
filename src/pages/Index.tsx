@@ -61,9 +61,6 @@ const Index = () => {
             <Link to="/login">
               <Button>Login</Button>
             </Link>
-            <Link to="/signup">
-              <Button variant="outline">Sign Up</Button>
-            </Link>
           </div>
         </div>
       </header>
@@ -92,7 +89,7 @@ const Index = () => {
                 Your simple, secure way to request and manage hostel gate passes. Get approved in minutes and enjoy your time out.
               </motion.p>
               <motion.div className="mt-8 flex flex-col sm:flex-row justify-center lg:justify-start gap-4" variants={itemVariants}>
-                <Link to="/signup">
+                <Link to="/login">
                   <Button size="lg" className="text-lg px-8 py-6 w-full sm:w-auto hover:scale-105 transition-transform">Get Started</Button>
                 </Link>
                 <a href="#features">
@@ -102,7 +99,7 @@ const Index = () => {
             </div>
             <motion.div variants={itemVariants} className="hidden lg:block">
               <img 
-                src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=2070&auto=format=fit&crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
                 alt="University campus with students" 
                 className="rounded-2xl shadow-2xl transform hover:scale-105 transition-transform duration-500"
               />
