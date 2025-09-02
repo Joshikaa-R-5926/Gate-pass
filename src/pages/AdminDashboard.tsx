@@ -3,9 +3,10 @@ import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/com
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { dummyAdmins } from "@/data/admins";
 import DashboardLayout from "@/components/DashboardLayout";
 import { ShieldCheckIcon, UsersIcon, ChevronLeft, ClockIcon, Shield, History, User, UserCog, Building, ClipboardList } from "lucide-react";
+import { useUserProfile } from "@/hooks/useUserProfile";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const navItems = [
   { href: "/admin-dashboard", label: "Admin Dashboard", icon: Shield },
@@ -20,10 +21,32 @@ const navItems = [
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
-  const currentUser = dummyAdmins[0];
+  const { profile, loading } = useUserProfile();
+
+  const userName = profile ? `${profile.first_name || ''} ${profile.last_name || ''}`.trim() : "Admin";
+
+  if (loading) {
+    return (
+      <DashboardLayout userName="Loading..." navItems={navItems}>
+        <div className="flex flex-col gap-6">
+          <Skeleton className="h-40 w-full" />
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <Skeleton className="h-28 w-full" />
+            <Skeleton className="h-28 w-full" />
+            <Skeleton className="h-28 w-full" />
+          </div>
+          <Skeleton className="h-48 w-full" />
+        </div>
+      </DashboardLayout>
+    );
+  }
+
+  if (!profile) {
+    return null;
+  }
 
   return (
-    <DashboardLayout userName={currentUser.name} navItems={navItems}>
+    <DashboardLayout userName={userName} navItems={navItems}>
       <div className="flex flex-col gap-6">
         <Card className="w-full bg-white/80 dark:bg-black/50 backdrop-blur-sm">
           <CardHeader className="relative">
@@ -36,7 +59,7 @@ const AdminDashboard = () => {
               <ChevronLeft className="h-5 w-5" />
               <span className="sr-only">Back</span>
             </Button>
-            <CardTitle className="text-3xl text-center">Welcome, {currentUser.name}!</CardTitle>
+            <CardTitle className="text-3xl text-center">Welcome, {userName}!</CardTitle>
             <CardDescription className="text-center">Overview of system administration and user management.</CardDescription>
           </CardHeader>
           <CardContent>
@@ -53,7 +76,7 @@ const AdminDashboard = () => {
               <ShieldCheckIcon className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{currentUser.role}</div>
+              <div className="text-2xl font-bold">{profile.role}</div>
               <p className="text-xs text-muted-foreground">Your current administrative role</p>
             </CardContent>
           </Card>
@@ -63,8 +86,8 @@ const AdminDashboard = () => {
               <ClockIcon className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{new Date(currentUser.lastActivity).toLocaleDateString()}</div>
-              <p className="text-xs text-muted-foreground">{new Date(currentUser.lastActivity).toLocaleTimeString()}</p>
+              <div className="text-2xl font-bold">{profile.updated_at ? new Date(profile.updated_at).toLocaleDateString() : 'N/A'}</div>
+              <p className="text-xs text-muted-foreground">{profile.updated_at ? new Date(profile.updated_at).toLocaleTimeString() : ''}</p>
             </CardContent>
           </Card>
           <Card className="bg-white/80 dark:bg-black/50 backdrop-blur-sm">
@@ -95,11 +118,11 @@ const AdminDashboard = () => {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                <TableRow key={currentUser.id}>
-                  <TableCell className="font-medium">{currentUser.name}</TableCell>
-                  <TableCell>{currentUser.email}</TableCell>
-                  <TableCell>{currentUser.role}</TableCell>
-                  <TableCell>{new Date(currentUser.lastActivity).toLocaleString()}</TableCell>
+                <TableRow key={profile.id}>
+                  <TableCell className="font-medium">{userName}</TableCell>
+                  <TableCell>{profile.email}</TableCell>
+                  <TableCell>{profile.role}</TableCell>
+                  <TableCell>{profile.updated_at ? new Date(profile.updated_at).toLocaleString() : 'N/A'}</TableCell>
                 </TableRow>
               </TableBody>
             </Table>

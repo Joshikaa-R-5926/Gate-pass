@@ -3,9 +3,10 @@ import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/com
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { dummyHODs } from "@/data/hods";
 import DashboardLayout from "@/components/DashboardLayout";
 import { Building2Icon, UsersIcon, ChevronLeft, UserCogIcon, LayoutDashboard, Clock, History, User, Home } from "lucide-react";
+import { useUserProfile } from "@/hooks/useUserProfile";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const navItems = [
   { href: "/hod-dashboard", label: "Dashboard", icon: LayoutDashboard },
@@ -17,10 +18,32 @@ const navItems = [
 
 const HodDashboard = () => {
   const navigate = useNavigate();
-  const currentUser = dummyHODs[0];
+  const { profile, loading } = useUserProfile();
+
+  const userName = profile ? `${profile.first_name || ''} ${profile.last_name || ''}`.trim() : "HOD";
+
+  if (loading) {
+    return (
+      <DashboardLayout userName="Loading..." navItems={navItems}>
+        <div className="flex flex-col gap-6">
+          <Skeleton className="h-40 w-full" />
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <Skeleton className="h-28 w-full" />
+            <Skeleton className="h-28 w-full" />
+            <Skeleton className="h-28 w-full" />
+          </div>
+          <Skeleton className="h-48 w-full" />
+        </div>
+      </DashboardLayout>
+    );
+  }
+
+  if (!profile) {
+    return null;
+  }
 
   return (
-    <DashboardLayout userName={currentUser.name} navItems={navItems}>
+    <DashboardLayout userName={userName} navItems={navItems}>
       <div className="flex flex-col gap-6">
         <Card className="w-full bg-white/80 dark:bg-black/50 backdrop-blur-sm">
           <CardHeader className="relative">
@@ -33,7 +56,7 @@ const HodDashboard = () => {
               <ChevronLeft className="h-5 w-5" />
               <span className="sr-only">Back</span>
             </Button>
-            <CardTitle className="text-3xl text-center">Welcome, {currentUser.name}!</CardTitle>
+            <CardTitle className="text-3xl text-center">Welcome, {userName}!</CardTitle>
             <CardDescription className="text-center">Overview of your department's performance and management.</CardDescription>
           </CardHeader>
           <CardContent>
@@ -50,7 +73,7 @@ const HodDashboard = () => {
               <Building2Icon className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{currentUser.department}</div>
+              <div className="text-2xl font-bold">N/A</div>
               <p className="text-xs text-muted-foreground">Your assigned department</p>
             </CardContent>
           </Card>
@@ -60,7 +83,7 @@ const HodDashboard = () => {
               <UsersIcon className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{currentUser.studentsManaged}</div>
+              <div className="text-2xl font-bold">N/A</div>
               <p className="text-xs text-muted-foreground">Total students in your department</p>
             </CardContent>
           </Card>
@@ -70,7 +93,7 @@ const HodDashboard = () => {
               <UserCogIcon className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">5</div>
+              <div className="text-2xl font-bold">N/A</div>
               <p className="text-xs text-muted-foreground">Active tutors under your supervision</p>
             </CardContent>
           </Card>
@@ -87,16 +110,14 @@ const HodDashboard = () => {
                 <TableRow>
                   <TableHead>Name</TableHead>
                   <TableHead>Email</TableHead>
-                  <TableHead>Department</TableHead>
-                  <TableHead>Students Managed</TableHead>
+                  <TableHead>Role</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
-                <TableRow key={currentUser.id}>
-                  <TableCell className="font-medium">{currentUser.name}</TableCell>
-                  <TableCell>{currentUser.email}</TableCell>
-                  <TableCell>{currentUser.department}</TableCell>
-                  <TableCell>{currentUser.studentsManaged}</TableCell>
+                <TableRow key={profile.id}>
+                  <TableCell className="font-medium">{userName}</TableCell>
+                  <TableCell>{profile.email}</TableCell>
+                  <TableCell>{profile.role}</TableCell>
                 </TableRow>
               </TableBody>
             </Table>

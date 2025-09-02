@@ -3,9 +3,10 @@ import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/com
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { dummyStudents } from "@/data/students";
 import DashboardLayout from "@/components/DashboardLayout";
 import { BookOpenIcon, GraduationCapIcon, ChevronLeft, FileTextIcon, LayoutDashboard, Clock, History, User } from "lucide-react";
+import { useUserProfile } from "@/hooks/useUserProfile";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const navItems = [
   { href: "/student-dashboard", label: "Dashboard", icon: LayoutDashboard },
@@ -16,10 +17,32 @@ const navItems = [
 
 const StudentDashboard = () => {
   const navigate = useNavigate();
-  const currentUser = dummyStudents[0];
+  const { profile, loading } = useUserProfile();
+
+  const userName = profile ? `${profile.first_name || ''} ${profile.last_name || ''}`.trim() : "Student";
+
+  if (loading) {
+    return (
+      <DashboardLayout userName="Loading..." navItems={navItems}>
+        <div className="flex flex-col gap-6">
+          <Skeleton className="h-40 w-full" />
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <Skeleton className="h-28 w-full" />
+            <Skeleton className="h-28 w-full" />
+            <Skeleton className="h-28 w-full" />
+          </div>
+          <Skeleton className="h-48 w-full" />
+        </div>
+      </DashboardLayout>
+    );
+  }
+
+  if (!profile) {
+    return null;
+  }
 
   return (
-    <DashboardLayout userName={currentUser.name} navItems={navItems}>
+    <DashboardLayout userName={userName} navItems={navItems}>
       <div className="flex flex-col gap-6">
         <Card className="w-full bg-white/80 dark:bg-black/50 backdrop-blur-sm">
           <CardHeader className="relative">
@@ -32,7 +55,7 @@ const StudentDashboard = () => {
               <ChevronLeft className="h-5 w-5" />
               <span className="sr-only">Back</span>
             </Button>
-            <CardTitle className="text-3xl text-center">Welcome, {currentUser.name}!</CardTitle>
+            <CardTitle className="text-3xl text-center">Welcome, {userName}!</CardTitle>
             <CardDescription className="text-center">Here's an overview of your academic journey.</CardDescription>
           </CardHeader>
           <CardContent>
@@ -49,7 +72,7 @@ const StudentDashboard = () => {
               <GraduationCapIcon className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{currentUser.grade}</div>
+              <div className="text-2xl font-bold">N/A</div>
               <p className="text-xs text-muted-foreground">Based on your latest assessments</p>
             </CardContent>
           </Card>
@@ -59,7 +82,7 @@ const StudentDashboard = () => {
               <BookOpenIcon className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{currentUser.courses.length}</div>
+              <div className="text-2xl font-bold">N/A</div>
               <p className="text-xs text-muted-foreground">Total active courses</p>
             </CardContent>
           </Card>
@@ -86,18 +109,14 @@ const StudentDashboard = () => {
                 <TableRow>
                   <TableHead>Name</TableHead>
                   <TableHead>Email</TableHead>
-                  <TableHead>Grade</TableHead>
-                  <TableHead>Courses</TableHead>
-                  <TableHead>Last Login</TableHead>
+                  <TableHead>Role</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
-                <TableRow key={currentUser.id}>
-                  <TableCell className="font-medium">{currentUser.name}</TableCell>
-                  <TableCell>{currentUser.email}</TableCell>
-                  <TableCell>{currentUser.grade}</TableCell>
-                  <TableCell>{currentUser.courses.join(", ")}</TableCell>
-                  <TableCell>{new Date(currentUser.lastLogin).toLocaleString()}</TableCell>
+                <TableRow key={profile.id}>
+                  <TableCell className="font-medium">{userName}</TableCell>
+                  <TableCell>{profile.email}</TableCell>
+                  <TableCell>{profile.role}</TableCell>
                 </TableRow>
               </TableBody>
             </Table>

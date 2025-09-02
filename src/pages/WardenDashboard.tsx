@@ -3,9 +3,10 @@ import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/com
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { dummyWardens } from "@/data/wardens";
 import DashboardLayout from "@/components/DashboardLayout";
 import { BuildingIcon, ChevronLeft, MaximizeIcon, BedIcon, LayoutDashboard, Clock, History, User } from "lucide-react";
+import { useUserProfile } from "@/hooks/useUserProfile";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const navItems = [
   { href: "/warden-dashboard", label: "Dashboard", icon: LayoutDashboard },
@@ -16,10 +17,32 @@ const navItems = [
 
 const WardenDashboard = () => {
   const navigate = useNavigate();
-  const currentUser = dummyWardens[0];
+  const { profile, loading } = useUserProfile();
+
+  const userName = profile ? `${profile.first_name || ''} ${profile.last_name || ''}`.trim() : "Warden";
+
+  if (loading) {
+    return (
+      <DashboardLayout userName="Loading..." navItems={navItems}>
+        <div className="flex flex-col gap-6">
+          <Skeleton className="h-40 w-full" />
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <Skeleton className="h-28 w-full" />
+            <Skeleton className="h-28 w-full" />
+            <Skeleton className="h-28 w-full" />
+          </div>
+          <Skeleton className="h-48 w-full" />
+        </div>
+      </DashboardLayout>
+    );
+  }
+
+  if (!profile) {
+    return null;
+  }
 
   return (
-    <DashboardLayout userName={currentUser.name} navItems={navItems}>
+    <DashboardLayout userName={userName} navItems={navItems}>
       <div className="flex flex-col gap-6">
         <Card className="w-full bg-white/80 dark:bg-black/50 backdrop-blur-sm">
           <CardHeader className="relative">
@@ -32,7 +55,7 @@ const WardenDashboard = () => {
               <ChevronLeft className="h-5 w-5" />
               <span className="sr-only">Back</span>
             </Button>
-            <CardTitle className="text-3xl text-center">Welcome, {currentUser.name}!</CardTitle>
+            <CardTitle className="text-3xl text-center">Welcome, {userName}!</CardTitle>
             <CardDescription className="text-center">Overview of your hostel management.</CardDescription>
           </CardHeader>
           <CardContent>
@@ -49,7 +72,7 @@ const WardenDashboard = () => {
               <BuildingIcon className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{currentUser.hostel}</div>
+              <div className="text-2xl font-bold">N/A</div>
               <p className="text-xs text-muted-foreground">Your assigned hostel</p>
             </CardContent>
           </Card>
@@ -59,7 +82,7 @@ const WardenDashboard = () => {
               <MaximizeIcon className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{currentUser.capacity}</div>
+              <div className="text-2xl font-bold">N/A</div>
               <p className="text-xs text-muted-foreground">Maximum residents</p>
             </CardContent>
           </Card>
@@ -69,7 +92,7 @@ const WardenDashboard = () => {
               <BedIcon className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{currentUser.capacity - currentUser.currentOccupancy}</div>
+              <div className="text-2xl font-bold">N/A</div>
               <p className="text-xs text-muted-foreground">Current vacant spots</p>
             </CardContent>
           </Card>
@@ -86,18 +109,14 @@ const WardenDashboard = () => {
                 <TableRow>
                   <TableHead>Name</TableHead>
                   <TableHead>Email</TableHead>
-                  <TableHead>Hostel</TableHead>
-                  <TableHead>Capacity</TableHead>
-                  <TableHead>Occupancy</TableHead>
+                  <TableHead>Role</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
-                <TableRow key={currentUser.id}>
-                  <TableCell className="font-medium">{currentUser.name}</TableCell>
-                  <TableCell>{currentUser.email}</TableCell>
-                  <TableCell>{currentUser.hostel}</TableCell>
-                  <TableCell>{currentUser.capacity}</TableCell>
-                  <TableCell>{currentUser.currentOccupancy}</TableCell>
+                <TableRow key={profile.id}>
+                  <TableCell className="font-medium">{userName}</TableCell>
+                  <TableCell>{profile.email}</TableCell>
+                  <TableCell>{profile.role}</TableCell>
                 </TableRow>
               </TableBody>
             </Table>

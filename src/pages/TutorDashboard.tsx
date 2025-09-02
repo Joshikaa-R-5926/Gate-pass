@@ -3,9 +3,10 @@ import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/com
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { dummyTutors } from "@/data/tutors";
 import DashboardLayout from "@/components/DashboardLayout";
 import { UsersIcon, BookIcon, StarIcon, ChevronLeft, LayoutDashboard, Clock, History, User, Home } from "lucide-react";
+import { useUserProfile } from "@/hooks/useUserProfile";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const navItems = [
   { href: "/tutor-dashboard", label: "Dashboard", icon: LayoutDashboard },
@@ -17,10 +18,32 @@ const navItems = [
 
 const TutorDashboard = () => {
   const navigate = useNavigate();
-  const currentUser = dummyTutors[0];
+  const { profile, loading } = useUserProfile();
+
+  const userName = profile ? `${profile.first_name || ''} ${profile.last_name || ''}`.trim() : "Tutor";
+
+  if (loading) {
+    return (
+      <DashboardLayout userName="Loading..." navItems={navItems}>
+        <div className="flex flex-col gap-6">
+          <Skeleton className="h-40 w-full" />
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <Skeleton className="h-28 w-full" />
+            <Skeleton className="h-28 w-full" />
+            <Skeleton className="h-28 w-full" />
+          </div>
+          <Skeleton className="h-48 w-full" />
+        </div>
+      </DashboardLayout>
+    );
+  }
+
+  if (!profile) {
+    return null;
+  }
 
   return (
-    <DashboardLayout userName={currentUser.name} navItems={navItems}>
+    <DashboardLayout userName={userName} navItems={navItems}>
       <div className="flex flex-col gap-6">
         <Card className="w-full bg-white/80 dark:bg-black/50 backdrop-blur-sm">
           <CardHeader className="relative">
@@ -33,7 +56,7 @@ const TutorDashboard = () => {
               <ChevronLeft className="h-5 w-5" />
               <span className="sr-only">Back</span>
             </Button>
-            <CardTitle className="text-3xl text-center">Welcome, {currentUser.name}!</CardTitle>
+            <CardTitle className="text-3xl text-center">Welcome, {userName}!</CardTitle>
             <CardDescription className="text-center">Here's an overview of your tutoring activities.</CardDescription>
           </CardHeader>
           <CardContent>
@@ -50,7 +73,7 @@ const TutorDashboard = () => {
               <UsersIcon className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{currentUser.studentsCount}</div>
+              <div className="text-2xl font-bold">N/A</div>
               <p className="text-xs text-muted-foreground">Currently assigned students</p>
             </CardContent>
           </Card>
@@ -60,7 +83,7 @@ const TutorDashboard = () => {
               <StarIcon className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{currentUser.rating} / 5.0</div>
+              <div className="text-2xl font-bold">N/A</div>
               <p className="text-xs text-muted-foreground">Based on student feedback</p>
             </CardContent>
           </Card>
@@ -70,8 +93,8 @@ const TutorDashboard = () => {
               <BookIcon className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{currentUser.subjects.length}</div>
-              <p className="text-xs text-muted-foreground">{currentUser.subjects.join(", ")}</p>
+              <div className="text-2xl font-bold">N/A</div>
+              <p className="text-xs text-muted-foreground">Your assigned subjects</p>
             </CardContent>
           </Card>
         </div>
@@ -87,18 +110,14 @@ const TutorDashboard = () => {
                 <TableRow>
                   <TableHead>Name</TableHead>
                   <TableHead>Email</TableHead>
-                  <TableHead>Subjects</TableHead>
-                  <TableHead>Rating</TableHead>
-                  <TableHead>Students</TableHead>
+                  <TableHead>Role</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
-                <TableRow key={currentUser.id}>
-                  <TableCell className="font-medium">{currentUser.name}</TableCell>
-                  <TableCell>{currentUser.email}</TableCell>
-                  <TableCell>{currentUser.subjects.join(", ")}</TableCell>
-                  <TableCell>{currentUser.rating}</TableCell>
-                  <TableCell>{currentUser.studentsCount}</TableCell>
+                <TableRow key={profile.id}>
+                  <TableCell className="font-medium">{userName}</TableCell>
+                  <TableCell>{profile.email}</TableCell>
+                  <TableCell>{profile.role}</TableCell>
                 </TableRow>
               </TableBody>
             </Table>
