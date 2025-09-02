@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { ShieldCheck, Smartphone, BarChart, Zap, Mail, Phone, MapPin } from "lucide-react";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 const Index = () => {
   const containerVariants = {
@@ -157,29 +158,78 @@ const Index = () => {
 
         <section id="contact" className="py-20 md:py-28 bg-white dark:bg-gray-950">
           <div className="container">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Get In Touch</h2>
-              <p className="mt-4 text-lg text-gray-600 dark:text-gray-400">
-                We'd love to hear from you. Contact us for any inquiries.
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl">
+                Let's Connect
+              </h2>
+              <p className="mt-4 max-w-2xl mx-auto text-lg text-gray-600 dark:text-gray-400">
+                Have questions or need support? We're here to help. Reach out to us through any of the channels below.
               </p>
             </div>
-            <div className="max-w-4xl mx-auto grid gap-8 md:grid-cols-3 text-center">
-                <div className="flex flex-col items-center">
-                    <Mail className="h-8 w-8 mb-2 text-blue-500"/>
-                    <h3 className="font-semibold">Email</h3>
-                    <p className="text-gray-600 dark:text-gray-400">support@hostelgatepass.com</p>
-                </div>
-                <div className="flex flex-col items-center">
-                    <Phone className="h-8 w-8 mb-2 text-blue-500"/>
-                    <h3 className="font-semibold">Phone</h3>
-                    <p className="text-gray-600 dark:text-gray-400">+1 (234) 567-890</p>
-                </div>
-                <div className="flex flex-col items-center">
-                    <MapPin className="h-8 w-8 mb-2 text-blue-500"/>
-                    <h3 className="font-semibold">Address</h3>
-                    <p className="text-gray-600 dark:text-gray-400">123 Tech Avenue, Silicon Valley</p>
-                </div>
-            </div>
+            <motion.div
+              className="max-w-4xl mx-auto grid gap-8 md:grid-cols-3"
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+            >
+              <motion.div variants={itemVariants}>
+                <Card className="text-center h-full transform transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl dark:bg-gray-900">
+                  <CardHeader>
+                    <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900/50">
+                      <Mail className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <h3 className="text-xl font-semibold">Email Us</h3>
+                    <p className="mt-2 text-gray-600 dark:text-gray-400">
+                      Send your questions to our support team.
+                    </p>
+                    <a href="mailto:support@hostelgatepass.com" className="mt-4 inline-block text-blue-600 dark:text-blue-400 font-medium hover:underline">
+                      support@hostelgatepass.com
+                    </a>
+                  </CardContent>
+                </Card>
+              </motion.div>
+
+              <motion.div variants={itemVariants}>
+                <Card className="text-center h-full transform transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl dark:bg-gray-900">
+                  <CardHeader>
+                    <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-green-100 dark:bg-green-900/50">
+                      <Phone className="h-6 w-6 text-green-600 dark:text-green-400" />
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <h3 className="text-xl font-semibold">Call Us</h3>
+                    <p className="mt-2 text-gray-600 dark:text-gray-400">
+                      Talk to our team for immediate assistance.
+                    </p>
+                    <a href="tel:+1234567890" className="mt-4 inline-block text-green-600 dark:text-green-400 font-medium hover:underline">
+                      +1 (234) 567-890
+                    </a>
+                  </CardContent>
+                </Card>
+              </motion.div>
+
+              <motion.div variants={itemVariants}>
+                <Card className="text-center h-full transform transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl dark:bg-gray-900">
+                  <CardHeader>
+                    <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-purple-100 dark:bg-purple-900/50">
+                      <MapPin className="h-6 w-6 text-purple-600 dark:text-purple-400" />
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <h3 className="text-xl font-semibold">Visit Us</h3>
+                    <p className="mt-2 text-gray-600 dark:text-gray-400">
+                      Find us at our main office location.
+                    </p>
+                    <p className="mt-4 text-gray-800 dark:text-gray-200 font-medium">
+                      123 Tech Avenue, Silicon Valley
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            </motion.div>
           </div>
         </section>
       </main>
