@@ -49,7 +49,7 @@ const Index = () => {
         <div className="container flex h-14 max-w-screen-2xl items-center justify-between">
           <Link to="/" className="flex items-center gap-2">
             <ShieldCheck className="h-6 w-6 text-blue-600" />
-            <span className="font-bold text-lg">GatePass Pro</span>
+            <span className="font-bold text-lg">Hostel GatePass</span>
           </Link>
           <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
             <a href="#home" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">Home</a>
@@ -97,7 +97,7 @@ const Index = () => {
         <section id="features" className="py-20 md:py-28 bg-white dark:bg-gray-950">
           <div className="container">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Why Choose GatePass Pro?</h2>
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Why Choose Hostel GatePass?</h2>
               <p className="mt-4 text-lg text-gray-600 dark:text-gray-400">
                 Everything you need for a modern gate pass system.
               </p>
@@ -127,9 +127,9 @@ const Index = () => {
         <section id="about" className="py-20 md:py-28 bg-gray-50 dark:bg-gray-900">
           <div className="container">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">About GatePass Pro</h2>
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">About Hostel GatePass</h2>
               <p className="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-                GatePass Pro was born from the need to modernize and simplify the process of managing student movements in educational institutions. Our mission is to provide a secure, efficient, and user-friendly platform for students, staff, and administration.
+                Hostel GatePass was born from the need to modernize and simplify the process of managing student movements in educational institutions. Our mission is to provide a secure, efficient, and user-friendly platform for students, staff, and administration.
               </p>
             </div>
             <div className="grid md:grid-cols-2 gap-8 items-center">
@@ -168,7 +168,7 @@ const Index = () => {
                 <div className="flex flex-col items-center">
                     <Mail className="h-8 w-8 mb-2 text-blue-500"/>
                     <h3 className="font-semibold">Email</h3>
-                    <p className="text-gray-600 dark:text-gray-400">support@gatepasspro.com</p>
+                    <p className="text-gray-600 dark:text-gray-400">support@hostelgatepass.com</p>
                 </div>
                 <div className="flex flex-col items-center">
                     <Phone className="h-8 w-8 mb-2 text-blue-500"/>
@@ -188,7 +188,7 @@ const Index = () => {
       <footer className="border-t bg-white dark:bg-gray-950">
         <div className="container py-8 flex flex-col md:flex-row justify-between items-center">
           <div className="mb-4 md:mb-0">
-            <p className="text-sm text-gray-500">&copy; {new Date().getFullYear()} GatePass Pro. All rights reserved.</p>
+            <p className="text-sm text-gray-500">&copy; {new Date().getFullYear()} Hostel GatePass. All rights reserved.</p>
           </div>
           <div className="flex gap-6 text-sm">
             <a href="#" className="text-gray-600 dark:text-gray-400 hover:underline">Privacy</a>
