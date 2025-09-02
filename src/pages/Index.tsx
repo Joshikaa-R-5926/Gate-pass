@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { ShieldCheck, Smartphone, BarChart, Zap, Mail, Phone, MapPin } from "lucide-react";
+import { ShieldCheck, Smartphone, BarChart, Zap, Mail, Phone, MapPin, Building, Users } from "lucide-react";
 
 const Index = () => {
   const containerVariants = {
@@ -54,6 +54,7 @@ const Index = () => {
           <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
             <a href="#home" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">Home</a>
             <a href="#features" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">Features</a>
+            <a href="#about" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">About</a>
             <a href="#contact" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">Contact</a>
           </nav>
           <div className="flex items-center gap-4">
@@ -123,7 +124,39 @@ const Index = () => {
           </div>
         </section>
 
-        <section id="contact" className="py-20 md:py-28 bg-gray-50 dark:bg-gray-900">
+        <section id="about" className="py-20 md:py-28 bg-gray-50 dark:bg-gray-900">
+          <div className="container">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">About GatePass Pro</h2>
+              <p className="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+                GatePass Pro was born from the need to modernize and simplify the process of managing student movements in educational institutions. Our mission is to provide a secure, efficient, and user-friendly platform for students, staff, and administration.
+              </p>
+            </div>
+            <div className="grid md:grid-cols-2 gap-8 items-center">
+              <div className="space-y-4">
+                <div className="flex items-start gap-4">
+                  <Building className="h-8 w-8 text-blue-500 mt-1 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-semibold text-lg">For Institutions</h3>
+                    <p className="text-gray-600 dark:text-gray-400">Enhance campus security, reduce administrative overhead, and gain valuable insights into student traffic with our powerful dashboard and reporting tools.</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <Users className="h-8 w-8 text-blue-500 mt-1 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-semibold text-lg">For Students</h3>
+                    <p className="text-gray-600 dark:text-gray-400">Enjoy a hassle-free experience with quick gate pass requests, real-time status updates, and a digital record of your entries and exits, all from your smartphone.</p>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <img src="/placeholder.svg" alt="Campus illustration" className="rounded-lg shadow-lg" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="contact" className="py-20 md:py-28 bg-white dark:bg-gray-950">
           <div className="container">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Get In Touch</h2>
@@ -158,7 +191,6 @@ const Index = () => {
             <p className="text-sm text-gray-500">&copy; {new Date().getFullYear()} GatePass Pro. All rights reserved.</p>
           </div>
           <div className="flex gap-6 text-sm">
-            <a href="#" className="text-gray-600 dark:text-gray-400 hover:underline">About</a>
             <a href="#" className="text-gray-600 dark:text-gray-400 hover:underline">Privacy</a>
             <a href="#contact" className="text-gray-600 dark:text-gray-400 hover:underline">Contact</a>
           </div>
