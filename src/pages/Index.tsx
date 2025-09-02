@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { ShieldCheck, Smartphone, BarChart, Zap, Mail, Phone, MapPin, Building, Users } from "lucide-react";
+import { ShieldCheck, Smartphone, BarChart, Zap, Mail, Phone, MapPin } from "lucide-react";
 
 const Index = () => {
   const containerVariants = {
@@ -24,22 +24,22 @@ const Index = () => {
     {
       icon: <ShieldCheck className="h-8 w-8 text-green-500" />,
       title: "Secure",
-      description: "Multi-level approval workflow ensures maximum security and accountability.",
+      description: "Multi-level approvals and digital records keep your information safe.",
     },
     {
       icon: <Zap className="h-8 w-8 text-blue-500" />,
       title: "Fast",
-      description: "Students can request gate passes in seconds through an intuitive, streamlined interface.",
+      description: "Request and receive gate pass approvals in just a few taps.",
     },
     {
       icon: <BarChart className="h-8 w-8 text-orange-500" />,
       title: "Dashboard",
-      description: "Admins get a comprehensive overview with detailed reports and analytics.",
+      description: "Track your request status and view your gate pass history anytime.",
     },
     {
       icon: <Smartphone className="h-8 w-8 text-purple-500" />,
       title: "Mobile Friendly",
-      description: "Access and manage gate passes on the go from any device, anytime.",
+      description: "Works perfectly on your phone, tablet, or computer.",
     },
   ];
 
@@ -59,7 +59,7 @@ const Index = () => {
           </nav>
           <div className="flex items-center gap-4">
             <Link to="/login">
-              <Button>Login</Button>
+              <Button>Sign In</Button>
             </Link>
           </div>
         </div>
@@ -78,17 +78,17 @@ const Index = () => {
               className="text-4xl font-extrabold tracking-tight lg:text-6xl text-gray-900 dark:text-gray-100"
               variants={itemVariants}
             >
-              Effortless Gate Pass Management
+              Effortless Hostel Gate Pass Management
             </motion.h1>
             <motion.p
               className="mt-6 max-w-2xl mx-auto text-lg text-gray-600 dark:text-gray-400"
               variants={itemVariants}
             >
-              A seamless, secure, and efficient solution for managing student gate passes. Empowering institutions with modern technology.
+              Your simple, secure way to request and manage hostel gate passes. Get approved in minutes and enjoy your time out.
             </motion.p>
             <motion.div className="mt-8 flex justify-center gap-4" variants={itemVariants}>
               <Link to="/login">
-                <Button size="lg" className="text-lg px-8 py-6 hover:scale-105 transition-transform">Get Started</Button>
+                <Button size="lg" className="text-lg px-8 py-6 hover:scale-105 transition-transform">Go to Portal</Button>
               </Link>
             </motion.div>
           </motion.div>
@@ -97,9 +97,9 @@ const Index = () => {
         <section id="features" className="py-20 md:py-28 bg-white dark:bg-gray-950">
           <div className="container">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Why Choose Hostel GatePass?</h2>
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">A Smarter Way to Manage Gate Passes</h2>
               <p className="mt-4 text-lg text-gray-600 dark:text-gray-400">
-                Everything you need for a modern gate pass system.
+                Designed for convenience and security.
               </p>
             </div>
             <motion.div
@@ -126,32 +126,11 @@ const Index = () => {
 
         <section id="about" className="py-20 md:py-28 bg-gray-50 dark:bg-gray-900">
           <div className="container">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">About Hostel GatePass</h2>
+            <div className="text-center">
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Modernizing Campus Life</h2>
               <p className="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-                Hostel GatePass was born from the need to modernize and simplify the process of managing student movements in educational institutions. Our mission is to provide a secure, efficient, and user-friendly platform for students, staff, and administration.
+                Hostel GatePass replaces outdated paper-based systems with a streamlined digital solution. Our platform offers a secure and easy-to-use experience for everyone: students can request passes effortlessly, wardens can approve them on the go, and institutions gain better oversight.
               </p>
-            </div>
-            <div className="grid md:grid-cols-2 gap-8 items-center">
-              <div className="space-y-4">
-                <div className="flex items-start gap-4">
-                  <Building className="h-8 w-8 text-blue-500 mt-1 flex-shrink-0" />
-                  <div>
-                    <h3 className="font-semibold text-lg">For Institutions</h3>
-                    <p className="text-gray-600 dark:text-gray-400">Enhance campus security, reduce administrative overhead, and gain valuable insights into student traffic with our powerful dashboard and reporting tools.</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <Users className="h-8 w-8 text-blue-500 mt-1 flex-shrink-0" />
-                  <div>
-                    <h3 className="font-semibold text-lg">For Students</h3>
-                    <p className="text-gray-600 dark:text-gray-400">Enjoy a hassle-free experience with quick gate pass requests, real-time status updates, and a digital record of your entries and exits, all from your smartphone.</p>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Students collaborating" className="rounded-lg shadow-lg object-cover h-full w-full" />
-              </div>
             </div>
           </div>
         </section>
