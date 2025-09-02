@@ -9,9 +9,9 @@ import { BookOpenIcon, GraduationCapIcon, ChevronLeft, FileTextIcon, LayoutDashb
 
 const navItems = [
   { href: "/student-dashboard", label: "Dashboard", icon: LayoutDashboard },
-  { href: "#", label: "Pending Request", icon: Clock },
-  { href: "#", label: "Request History", icon: History },
-  { href: "#", label: "Profile", icon: User },
+  { href: "/pending-request", label: "Pending Request", icon: Clock },
+  { href: "/request-history", label: "Request History", icon: History },
+  { href: "/profile", label: "Profile", icon: User },
 ];
 
 const StudentDashboard = () => {

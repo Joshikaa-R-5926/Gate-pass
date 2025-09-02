@@ -9,10 +9,10 @@ import { Building2Icon, UsersIcon, ChevronLeft, UserCogIcon, LayoutDashboard, Cl
 
 const navItems = [
   { href: "/hod-dashboard", label: "Dashboard", icon: LayoutDashboard },
-  { href: "#", label: "Hostellers", icon: Home },
-  { href: "#", label: "Pending Request", icon: Clock },
-  { href: "#", label: "Request History", icon: History },
-  { href: "#", label: "Profile", icon: User },
+  { href: "/hostellers", label: "Hostellers", icon: Home },
+  { href: "/pending-request", label: "Pending Request", icon: Clock },
+  { href: "/request-history", label: "Request History", icon: History },
+  { href: "/profile", label: "Profile", icon: User },
 ];
 
 const HodDashboard = () => {
