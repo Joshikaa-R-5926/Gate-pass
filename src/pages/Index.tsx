@@ -70,10 +70,10 @@ const Index = () => {
 
       <main>
         <section id="home" className="relative py-20 md:py-32 overflow-hidden">
-          <div className="absolute inset-0 -z-10 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-indigo-900 dark:to-purple-900"></div>
-          <div className="absolute top-0 -left-4 w-72 h-72 bg-purple-300/50 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
-          <div className="absolute top-0 -right-4 w-72 h-72 bg-blue-300/50 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
-          <div className="absolute -bottom-8 left-20 w-72 h-72 bg-pink-300/50 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+          <div className="absolute inset-0 -z-10 bg-gradient-to-br from-sky-100 via-rose-100 to-amber-100 dark:from-gray-900 dark:via-sky-900 dark:to-rose-900"></div>
+          <div className="absolute top-0 -left-4 w-72 h-72 bg-rose-300/50 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+          <div className="absolute top-0 -right-4 w-72 h-72 bg-sky-300/50 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+          <div className="absolute -bottom-8 left-20 w-72 h-72 bg-amber-300/50 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
           
           <motion.div
             className="relative z-10 container grid lg:grid-cols-2 gap-12 items-center"
@@ -86,7 +86,7 @@ const Index = () => {
                 className="text-5xl font-extrabold tracking-tight lg:text-7xl text-gray-900 dark:text-gray-100"
                 variants={itemVariants}
               >
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-sky-500 to-rose-500">
                   Effortless
                 </span> Hostel Gate Pass Management
               </motion.h1>
