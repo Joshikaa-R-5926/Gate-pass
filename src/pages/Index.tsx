@@ -69,38 +69,47 @@ const Index = () => {
       </header>
 
       <main>
-        <section id="home" className="relative py-20 md:py-32">
-          <div className="absolute inset-0 -z-10 bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 dark:from-gray-800 dark:via-indigo-900 dark:to-purple-900 animate-gradient-xy"></div>
+        <section id="home" className="relative py-20 md:py-32 overflow-hidden">
+          <div className="absolute inset-0 -z-10 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-indigo-900 dark:to-purple-900"></div>
+          <div className="absolute top-0 -left-4 w-72 h-72 bg-purple-300/50 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+          <div className="absolute top-0 -right-4 w-72 h-72 bg-blue-300/50 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+          <div className="absolute -bottom-8 left-20 w-72 h-72 bg-pink-300/50 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+          
           <motion.div
-            className="container grid lg:grid-cols-2 gap-12 items-center"
+            className="relative z-10 container grid lg:grid-cols-2 gap-12 items-center"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
           >
             <div className="text-center lg:text-left">
               <motion.h1
-                className="text-4xl font-extrabold tracking-tight lg:text-6xl text-gray-900 dark:text-gray-100"
+                className="text-5xl font-extrabold tracking-tight lg:text-7xl text-gray-900 dark:text-gray-100"
                 variants={itemVariants}
               >
-                Effortless Hostel Gate Pass Management
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
+                  Effortless
+                </span> Hostel Gate Pass Management
               </motion.h1>
               <motion.p
-                className="mt-6 max-w-2xl mx-auto lg:mx-0 text-lg text-gray-600 dark:text-gray-400"
+                className="mt-6 max-w-2xl mx-auto lg:mx-0 text-lg text-gray-700 dark:text-gray-300"
                 variants={itemVariants}
               >
                 Your simple, secure way to request and manage hostel gate passes. Get approved in minutes and enjoy your time out.
               </motion.p>
-              <motion.div className="mt-8 flex justify-center lg:justify-start gap-4" variants={itemVariants}>
-                <Link to="/login">
-                  <Button size="lg" className="text-lg px-8 py-6 hover:scale-105 transition-transform">Go to Portal</Button>
+              <motion.div className="mt-8 flex flex-col sm:flex-row justify-center lg:justify-start gap-4" variants={itemVariants}>
+                <Link to="/signup">
+                  <Button size="lg" className="text-lg px-8 py-6 w-full sm:w-auto hover:scale-105 transition-transform">Get Started</Button>
                 </Link>
+                <a href="#features">
+                  <Button size="lg" variant="outline" className="text-lg px-8 py-6 w-full sm:w-auto hover:scale-105 transition-transform bg-white/50 dark:bg-gray-900/50">Learn More</Button>
+                </a>
               </motion.div>
             </div>
             <motion.div variants={itemVariants} className="hidden lg:block">
               <img 
-                src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
-                alt="Happy students" 
-                className="rounded-xl shadow-2xl"
+                src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                alt="University campus with students" 
+                className="rounded-2xl shadow-2xl transform hover:scale-105 transition-transform duration-500"
               />
             </motion.div>
           </motion.div>
