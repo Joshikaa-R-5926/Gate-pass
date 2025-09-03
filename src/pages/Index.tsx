@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { ShieldCheck, Smartphone, BarChart, Zap, Mail, Phone, MapPin } from "lucide-react";
+import { ShieldCheck, Smartphone, BarChart, Zap, Mail, Phone, MapPin, Printer } from "lucide-react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 const Index = () => {
@@ -167,7 +167,7 @@ const Index = () => {
               </p>
             </div>
             <motion.div
-              className="max-w-4xl mx-auto grid gap-8 md:grid-cols-3"
+              className="max-w-4xl mx-auto grid gap-8 md:grid-cols-2"
               variants={containerVariants}
               initial="hidden"
               whileInView="visible"
@@ -180,14 +180,22 @@ const Index = () => {
                       <Mail className="h-6 w-6 text-blue-600 dark:text-blue-400" />
                     </div>
                   </CardHeader>
-                  <CardContent>
-                    <h3 className="text-xl font-semibold">Email Us</h3>
-                    <p className="mt-2 text-gray-600 dark:text-gray-400">
-                      Send your questions to our support team.
-                    </p>
-                    <a href="mailto:support@hostelgatepass.com" className="mt-4 inline-block text-blue-600 dark:text-blue-400 font-medium hover:underline">
-                      support@hostelgatepass.com
-                    </a>
+                  <CardContent className="text-left">
+                    <h3 className="text-xl font-semibold text-center">Email Us</h3>
+                    <div className="mt-4 space-y-4 text-sm">
+                      <div>
+                        <p className="font-semibold text-gray-700 dark:text-gray-300">Principal:</p>
+                        <a href="mailto:principal@adhiyamaan.ac.in" className="text-blue-600 dark:text-blue-400 hover:underline">
+                          principal@adhiyamaan.ac.in
+                        </a>
+                      </div>
+                      <div>
+                        <p className="font-semibold text-gray-700 dark:text-gray-300">Controller of Examination:</p>
+                        <a href="mailto:coe@adhiyamaan.ac.in" className="text-blue-600 dark:text-blue-400 hover:underline">
+                          coe@adhiyamaan.ac.in
+                        </a>
+                      </div>
+                    </div>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -225,6 +233,25 @@ const Index = () => {
                     </p>
                     <p className="mt-4 text-gray-800 dark:text-gray-200 font-medium">
                       123 Tech Avenue, Silicon Valley
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+
+              <motion.div variants={itemVariants}>
+                <Card className="text-center h-full transform transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl dark:bg-gray-900">
+                  <CardHeader>
+                    <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-red-100 dark:bg-red-900/50">
+                      <Printer className="h-6 w-6 text-red-600 dark:text-red-400" />
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <h3 className="text-xl font-semibold">FAX</h3>
+                    <p className="mt-2 text-gray-600 dark:text-gray-400">
+                      Principal Office
+                    </p>
+                    <p className="mt-4 text-red-600 dark:text-red-400 font-medium">
+                      (04344) 260573
                     </p>
                   </CardContent>
                 </Card>
