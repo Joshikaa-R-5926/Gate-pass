@@ -236,7 +236,10 @@ const Index = () => {
                       Find us at our main office location.
                     </p>
                     <p className="mt-4 text-gray-800 dark:text-gray-200 font-medium">
-                      123 Tech Avenue, Silicon Valley
+                      Adhiyamaan College of Engineering<br />
+                      Dr.M.G.R.Nagar, Hosur,<br />
+                      Krishnagiri District, Tamil Nadu,<br />
+                      India. Pin:635 130
                     </p>
                   </CardContent>
                 </Card>
