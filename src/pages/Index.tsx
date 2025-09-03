@@ -2,11 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { ShieldCheck, Smartphone, BarChart, Zap } from "lucide-react";
+import { ShieldCheck, Smartphone, BarChart, Zap, Mail, Phone, MapPin, Printer } from "lucide-react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Mail, Phone, MapPin, Printer } from "lucide-react"; // Ensure these are imported if used in contact section
 
 const Index = () => {
   const containerVariants = {
@@ -192,14 +191,34 @@ const Index = () => {
                       <Phone className="h-6 w-6 text-green-600 dark:text-green-400" />
                     </div>
                   </CardHeader>
-                  <CardContent>
-                    <h3 className="text-xl font-semibold">Call Us</h3>
-                    <p className="mt-2 text-gray-600 dark:text-gray-400">
-                      Talk to our team for immediate assistance.
-                    </p>
-                    <a href="tel:+1234567890" className="mt-4 inline-block text-green-600 dark:text-green-400 font-medium hover:underline">
-                      +1 (234) 567-890
-                    </a>
+                  <CardContent className="text-left">
+                    <h3 className="text-xl font-semibold text-center">Call Us</h3>
+                    <div className="mt-4 space-y-4 text-sm">
+                      <div>
+                        <p className="font-semibold text-gray-700 dark:text-gray-300">Reception:</p>
+                        <a href="tel:+04344260570" className="text-green-600 dark:text-green-400 hover:underline">
+                          (04344) 260570
+                        </a>
+                      </div>
+                      <div>
+                        <p className="font-semibold text-gray-700 dark:text-gray-300">Administrative Office:</p>
+                        <a href="tel:+04344261002" className="text-green-600 dark:text-green-400 hover:underline">
+                          (04344) 261002
+                        </a>
+                      </div>
+                      <div>
+                        <p className="font-semibold text-gray-700 dark:text-gray-300">Accounts Office:</p>
+                        <a href="tel:+04344261001" className="text-green-600 dark:text-green-400 hover:underline">
+                          (04344) 261001
+                        </a> / <a href="tel:+04344261034" className="text-green-600 dark:text-green-400 hover:underline">261034</a>
+                      </div>
+                      <div>
+                        <p className="font-semibold text-gray-700 dark:text-gray-300">Principal Office:</p>
+                        <a href="tel:+04344261020" className="text-green-600 dark:text-green-400 hover:underline">
+                          (04344) 261020
+                        </a>
+                      </div>
+                    </div>
                   </CardContent>
                 </Card>
               </motion.div>
