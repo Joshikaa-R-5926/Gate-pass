@@ -7,6 +7,7 @@ import DashboardLayout from "@/components/DashboardLayout";
 import { BookOpenIcon, GraduationCapIcon, ChevronLeft, FileTextIcon, LayoutDashboard, Clock, History, User } from "lucide-react";
 import { useUserProfile } from "@/hooks/useUserProfile";
 import { Skeleton } from "@/components/ui/skeleton";
+import GatepassRequestForm from "@/components/GatepassRequestForm";
 
 const navItems = [
   { href: "/student-dashboard", label: "Dashboard", icon: LayoutDashboard },
@@ -64,6 +65,8 @@ const StudentDashboard = () => {
             </p>
           </CardContent>
         </Card>
+
+        <GatepassRequestForm profile={profile} />
 
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           <Card className="bg-white/80 dark:bg-black/50 backdrop-blur-sm">
