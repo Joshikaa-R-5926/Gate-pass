@@ -11,7 +11,7 @@ interface DashboardLayoutProps {
 
 const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children, userName, navItems }) => {
   return (
-    <div className="flex min-h-screen bg-gray-100 dark:bg-gray-950">
+    <div className="flex h-screen overflow-hidden bg-gray-100 dark:bg-gray-950">
       <ModernSidebar userName={userName} navItems={navItems} />
       <div className="flex-1 flex flex-col overflow-hidden">
         <header className="flex justify-end items-center p-4 border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900">
