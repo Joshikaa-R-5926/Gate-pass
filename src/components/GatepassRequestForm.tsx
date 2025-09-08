@@ -19,6 +19,7 @@ interface GatepassRequestFormProps {
 }
 
 const GatepassRequestForm: React.FC<GatepassRequestFormProps> = ({ profile }) => {
+  const [studentName, setStudentName] = useState(`${profile.first_name || ''} ${profile.last_name || ''}`.trim());
   const [studentId, setStudentId] = useState('');
   const [department, setDepartment] = useState('');
   const [roomNumber, setRoomNumber] = useState('');
@@ -41,6 +42,7 @@ const GatepassRequestForm: React.FC<GatepassRequestFormProps> = ({ profile }) =>
 
     const { error } = await supabase.from('gatepass_requests').insert({
       student_id: profile.id,
+      student_name: studentName,
       student_room_number: roomNumber,
       student_course: department,
       student_contact: profile.contact || 'N/A',
@@ -57,6 +59,7 @@ const GatepassRequestForm: React.FC<GatepassRequestFormProps> = ({ profile }) =>
       showError(`Failed to submit request: ${error.message}`);
     } else {
       showSuccess("Gatepass request submitted successfully!");
+      setStudentName(`${profile.first_name || ''} ${profile.last_name || ''}`.trim());
       setStudentId('');
       setDepartment('');
       setRoomNumber('');
@@ -78,8 +81,8 @@ const GatepassRequestForm: React.FC<GatepassRequestFormProps> = ({ profile }) =>
       <form onSubmit={handleSubmit}>
         <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-2">
-            <Label>Name of Student</Label>
-            <Input value={`${profile.first_name || ''} ${profile.last_name || ''}`} disabled />
+            <Label htmlFor="studentName">Name of Student</Label>
+            <Input id="studentName" value={studentName} onChange={(e) => setStudentName(e.target.value)} required />
           </div>
           <div className="space-y-2">
             <Label htmlFor="studentId">Student ID / Roll Number</Label>
