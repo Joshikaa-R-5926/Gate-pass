@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -8,6 +8,18 @@ import { ChevronLeft, FileTextIcon, LayoutDashboard, Clock, History, User } from
 import { useUserProfile } from "@/hooks/useUserProfile";
 import { Skeleton } from "@/components/ui/skeleton";
 import GatepassRequestForm from "@/components/GatepassRequestForm";
+import { supabase } from "@/integrations/supabase/client";
+import { Badge } from "@/components/ui/badge";
+import { showError } from "@/utils/toast";
+
+interface GatepassRequest {
+  id: string;
+  reason: string;
+  leave_start_date: string;
+  leave_end_date: string;
+  status: string;
+  created_at: string;
+}
 
 const navItems = [
   { href: "/student-dashboard", label: "Dashboard", icon: LayoutDashboard },
@@ -18,20 +30,42 @@ const navItems = [
 
 const StudentDashboard = () => {
   const navigate = useNavigate();
-  const { profile, loading } = useUserProfile();
+  const { profile, loading: profileLoading } = useUserProfile();
+  const [requests, setRequests] = useState<GatepassRequest[]>([]);
+  const [requestsLoading, setRequestsLoading] = useState(true);
 
   const userName = profile ? `${profile.first_name || ''} ${profile.last_name || ''}`.trim() : "Student";
 
-  if (loading) {
+  const fetchRequests = useCallback(async () => {
+    if (!profile) return;
+    setRequestsLoading(true);
+    const { data, error } = await supabase
+      .from('gatepass_requests')
+      .select('*')
+      .eq('student_id', profile.id)
+      .order('created_at', { ascending: false });
+
+    if (error) {
+      showError("Failed to fetch your requests.");
+      console.error("Error fetching requests:", error);
+    } else {
+      setRequests(data as GatepassRequest[]);
+    }
+    setRequestsLoading(false);
+  }, [profile]);
+
+  useEffect(() => {
+    if (profile) {
+      fetchRequests();
+    }
+  }, [profile, fetchRequests]);
+
+  if (profileLoading) {
     return (
       <DashboardLayout userName="Loading..." navItems={navItems}>
         <div className="flex flex-col gap-6">
           <Skeleton className="h-40 w-full" />
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            <Skeleton className="h-28 w-full" />
-            <Skeleton className="h-28 w-full" />
-            <Skeleton className="h-28 w-full" />
-          </div>
+          <Skeleton className="h-64 w-full" />
           <Skeleton className="h-48 w-full" />
         </div>
       </DashboardLayout>
@@ -41,6 +75,21 @@ const StudentDashboard = () => {
   if (!profile) {
     return null;
   }
+
+  const getStatusBadgeVariant = (status: string): "default" | "secondary" | "destructive" | "outline" => {
+    switch (status) {
+      case 'warden_approved':
+        return 'default';
+      case 'rejected':
+        return 'destructive';
+      case 'pending_parent_otp':
+      case 'parent_verified':
+      case 'hod_approved':
+        return 'secondary';
+      default:
+        return 'outline';
+    }
+  };
 
   return (
     <DashboardLayout userName={userName} navItems={navItems}>
@@ -66,20 +115,50 @@ const StudentDashboard = () => {
           </CardContent>
         </Card>
 
-        <GatepassRequestForm profile={profile} />
+        <GatepassRequestForm profile={profile} onFormSubmit={fetchRequests} />
 
-        <div className="grid gap-4">
-          <Card className="bg-white/80 dark:bg-black/50 backdrop-blur-sm">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">My Request</CardTitle>
-              <FileTextIcon className="h-4 w-4 text-muted-foreground" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">No pending requests</div>
-              <p className="text-xs text-muted-foreground">View or submit new requests</p>
-            </CardContent>
-          </Card>
-        </div>
+        <Card className="w-full bg-white/80 dark:bg-black/50 backdrop-blur-sm">
+          <CardHeader>
+            <CardTitle>My Requests</CardTitle>
+            <CardDescription>Here is a list of your recent gatepass requests.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            {requestsLoading ? (
+              <Skeleton className="h-24 w-full" />
+            ) : requests.length > 0 ? (
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Reason</TableHead>
+                    <TableHead>Leave Date</TableHead>
+                    <TableHead>Return Date</TableHead>
+                    <TableHead>Status</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {requests.map((request) => (
+                    <TableRow key={request.id}>
+                      <TableCell className="font-medium">{request.reason}</TableCell>
+                      <TableCell>{new Date(request.leave_start_date).toLocaleDateString()}</TableCell>
+                      <TableCell>{new Date(request.leave_end_date).toLocaleDateString()}</TableCell>
+                      <TableCell>
+                        <Badge variant={getStatusBadgeVariant(request.status)}>
+                          {request.status.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
+                        </Badge>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            ) : (
+              <div className="text-center py-8">
+                <FileTextIcon className="mx-auto h-12 w-12 text-gray-400" />
+                <h3 className="mt-2 text-sm font-medium text-gray-900 dark:text-gray-100">No requests found</h3>
+                <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">Submit a new request using the form above.</p>
+              </div>
+            )}
+          </CardContent>
+        </Card>
 
         <Card className="w-full bg-white/80 dark:bg-black/50 backdrop-blur-sm">
           <CardHeader>

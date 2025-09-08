@@ -17,9 +17,10 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 
 interface GatepassRequestFormProps {
   profile: UserProfile;
+  onFormSubmit: () => void;
 }
 
-const GatepassRequestForm: React.FC<GatepassRequestFormProps> = ({ profile }) => {
+const GatepassRequestForm: React.FC<GatepassRequestFormProps> = ({ profile, onFormSubmit }) => {
   const [studentName, setStudentName] = useState(`${profile.first_name || ''} ${profile.last_name || ''}`.trim());
   const [studentId, setStudentId] = useState('');
   const [department, setDepartment] = useState('');
@@ -77,6 +78,7 @@ const GatepassRequestForm: React.FC<GatepassRequestFormProps> = ({ profile }) =>
       setReturnDate(undefined);
       setParentContact(profile.parent_contact || '');
       setAgreed(false);
+      onFormSubmit();
     }
   };
 
