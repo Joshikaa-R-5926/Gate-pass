@@ -13,6 +13,7 @@ import { cn } from "@/lib/utils";
 import { supabase } from '@/integrations/supabase/client';
 import { showSuccess, showError, showLoading, dismissToast } from '@/utils/toast';
 import { UserProfile } from '@/hooks/useUserProfile';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 interface GatepassRequestFormProps {
   profile: UserProfile;
@@ -22,6 +23,7 @@ const GatepassRequestForm: React.FC<GatepassRequestFormProps> = ({ profile }) =>
   const [studentName, setStudentName] = useState(`${profile.first_name || ''} ${profile.last_name || ''}`.trim());
   const [studentId, setStudentId] = useState('');
   const [department, setDepartment] = useState('');
+  const [hostel, setHostel] = useState('');
   const [roomNumber, setRoomNumber] = useState('');
   const [reason, setReason] = useState('');
   const [destination, setDestination] = useState('');
@@ -37,6 +39,10 @@ const GatepassRequestForm: React.FC<GatepassRequestFormProps> = ({ profile }) =>
       showError("Please select both leave and return dates.");
       return;
     }
+    if (!hostel) {
+      showError("Please select your hostel.");
+      return;
+    }
     setLoading(true);
     const toastId = showLoading("Submitting your request...");
 
@@ -44,6 +50,7 @@ const GatepassRequestForm: React.FC<GatepassRequestFormProps> = ({ profile }) =>
       student_id: profile.id,
       student_name: studentName,
       student_room_number: roomNumber,
+      hostel_name: hostel,
       student_course: department,
       student_contact: profile.contact || 'N/A',
       parent_contact: parentContact,
@@ -62,6 +69,7 @@ const GatepassRequestForm: React.FC<GatepassRequestFormProps> = ({ profile }) =>
       setStudentName(`${profile.first_name || ''} ${profile.last_name || ''}`.trim());
       setStudentId('');
       setDepartment('');
+      setHostel('');
       setRoomNumber('');
       setReason('');
       setDestination('');
@@ -91,6 +99,18 @@ const GatepassRequestForm: React.FC<GatepassRequestFormProps> = ({ profile }) =>
           <div className="space-y-2 md:col-span-2">
             <Label htmlFor="department">Department / Year / Section</Label>
             <Input id="department" placeholder="e.g., CSE / III / A" value={department} onChange={(e) => setDepartment(e.target.value)} required />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="hostel">Hostel Name</Label>
+            <Select onValueChange={setHostel} value={hostel}>
+              <SelectTrigger id="hostel">
+                <SelectValue placeholder="Select your hostel" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="Bhavani">Bhavani Hostel</SelectItem>
+                <SelectItem value="Pennar">Pennar Hostel</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
            <div className="space-y-2">
             <Label htmlFor="roomNumber">Hostel Room Number</Label>
