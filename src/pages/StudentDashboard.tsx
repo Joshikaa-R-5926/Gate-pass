@@ -1,10 +1,10 @@
 import React from "react";
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/components/ui/card";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import DashboardLayout from "@/components/DashboardLayout";
-import { BookOpenIcon, GraduationCapIcon, ChevronLeft, FileTextIcon, LayoutDashboard, Clock, History, User } from "lucide-react";
+import { BookOpenIcon, GraduationCapIcon, ChevronLeft, FileTextIcon, LayoutDashboard, Clock, History, User, PlusCircle } from "lucide-react";
 import { useUserProfile } from "@/hooks/useUserProfile";
 import { Skeleton } from "@/components/ui/skeleton";
 
@@ -58,10 +58,13 @@ const StudentDashboard = () => {
             <CardTitle className="text-3xl text-center">Welcome, {userName}!</CardTitle>
             <CardDescription className="text-center">Here's an overview of your academic journey.</CardDescription>
           </CardHeader>
-          <CardContent>
-            <p className="text-lg text-gray-700 dark:text-gray-300 text-center">
-              Stay on top of your courses, grades, and upcoming activities.
-            </p>
+          <CardContent className="flex justify-center">
+            <Link to="/new-gatepass-request">
+                <Button size="lg">
+                    <PlusCircle className="mr-2 h-5 w-5" />
+                    New Gate Pass Request
+                </Button>
+            </Link>
           </CardContent>
         </Card>
 
