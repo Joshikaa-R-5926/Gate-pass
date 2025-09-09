@@ -58,6 +58,7 @@ const GatepassRequestForm: React.FC<GatepassRequestFormProps> = ({ profile, onFo
       reason: `${reason} - Destination: ${destination}`,
       leave_start_date: leaveDate.toISOString(),
       leave_end_date: returnDate.toISOString(),
+      status: 'pending_tutor_approval',
     });
 
     dismissToast(toastId);

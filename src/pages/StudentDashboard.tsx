@@ -78,13 +78,14 @@ const StudentDashboard = () => {
 
   const getStatusBadgeVariant = (status: string): "default" | "secondary" | "destructive" | "outline" => {
     switch (status) {
-      case 'warden_approved':
+      case 'approved':
         return 'default';
       case 'rejected':
+      case 'cancelled':
         return 'destructive';
-      case 'pending_parent_otp':
-      case 'parent_verified':
-      case 'hod_approved':
+      case 'pending_tutor_approval':
+      case 'pending_hod_approval':
+      case 'pending_warden_approval':
         return 'secondary';
       default:
         return 'outline';
