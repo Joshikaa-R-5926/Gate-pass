@@ -7,12 +7,13 @@ interface DashboardLayoutProps {
   children: React.ReactNode;
   userName: string;
   navItems: NavItem[];
+  role: string;
 }
 
-const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children, userName, navItems }) => {
+const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children, userName, navItems, role }) => {
   return (
     <div className="flex h-screen overflow-hidden bg-gray-100 dark:bg-gray-950">
-      <ModernSidebar userName={userName} navItems={navItems} />
+      <ModernSidebar userName={userName} navItems={navItems} role={role} />
       <div className="flex-1 flex flex-col overflow-hidden">
         <header className="flex justify-end items-center p-4 border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900">
           <div className="flex items-center gap-4">

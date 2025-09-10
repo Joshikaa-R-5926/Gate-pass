@@ -30,7 +30,7 @@ const DashboardRoutes = () => {
   const navItems = getNavItemsByRole(profile.role || '');
 
   return (
-    <DashboardLayout userName={userName} navItems={navItems}>
+    <DashboardLayout userName={userName} navItems={navItems} role={profile.role || ''}>
       <Outlet />
     </DashboardLayout>
   );
