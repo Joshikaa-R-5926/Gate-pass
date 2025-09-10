@@ -10,6 +10,7 @@ import {
   LayoutDashboard,
   Home,
   LucideIcon,
+  PlusCircle,
 } from "lucide-react";
 
 export interface NavItem {
@@ -24,6 +25,7 @@ export const getNavItemsByRole = (role: string): NavItem[] => {
   ];
 
   const studentItems: NavItem[] = [
+    { href: "/new-request", label: "New Request", icon: PlusCircle },
     { href: "/student-dashboard", label: "Dashboard", icon: LayoutDashboard },
     { href: "/request-history", label: "Request History", icon: History },
     ...baseItems,

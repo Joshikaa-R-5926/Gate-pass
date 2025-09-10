@@ -1,9 +1,8 @@
 import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Shield, LucideIcon, LogOut, PlusCircle } from "lucide-react";
+import { Shield, LucideIcon, LogOut } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
-import { Button } from "./ui/button";
 
 export interface NavItem {
   href: string;
@@ -43,17 +42,6 @@ const ModernSidebar: React.FC<ModernSidebarProps> = ({ userName, navItems, role 
           Dashboard
         </span>
       </div>
-
-      {role.toLowerCase() === 'student' && (
-        <div className="mb-4">
-          <Link to="/student-dashboard">
-            <Button className="w-full justify-start gap-3 text-lg py-6">
-              <PlusCircle size={22} />
-              New Request
-            </Button>
-          </Link>
-        </div>
-      )}
 
       <nav className="flex-1 flex flex-col gap-2">
         {navItems.map((item) => {

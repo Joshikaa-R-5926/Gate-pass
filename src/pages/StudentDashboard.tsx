@@ -4,7 +4,6 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { FileTextIcon } from "lucide-react";
 import { useUserProfile } from "@/hooks/useUserProfile";
 import { Skeleton } from "@/components/ui/skeleton";
-import GatepassRequestForm from "@/components/GatepassRequestForm";
 import { supabase } from "@/integrations/supabase/client";
 import { Badge } from "@/components/ui/badge";
 import { showError } from "@/utils/toast";
@@ -54,7 +53,7 @@ const StudentDashboard = () => {
     return (
       <div className="flex flex-col gap-6">
         <Skeleton className="h-40 w-full" />
-        <Skeleton className="h-64 w-full" />
+        <Skeleton className="h-48 w-full" />
         <Skeleton className="h-48 w-full" />
       </div>
     );
@@ -87,8 +86,6 @@ const StudentDashboard = () => {
         description="Here's an overview of your academic journey."
         content="Stay on top of your courses, grades, and upcoming activities."
       />
-
-      <GatepassRequestForm profile={profile} onFormSubmit={fetchRequests} />
 
       <Card className="w-full bg-white/80 dark:bg-black/50 backdrop-blur-sm">
         <CardHeader>

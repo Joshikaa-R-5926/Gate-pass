@@ -22,6 +22,7 @@ import Profile from "./pages/Profile";
 import Hostellers from "./pages/Hostellers";
 import Dashboards from "./pages/Dashboards";
 import DashboardRoutes from "./components/DashboardRoutes";
+import NewRequest from "./pages/NewRequest";
 
 const queryClient = new QueryClient();
 
@@ -52,6 +53,7 @@ const App = () => (
             <Route path="/request-history" element={<RequestHistory />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/hostellers" element={<Hostellers />} />
+            <Route path="/new-request" element={<NewRequest />} />
           </Route>
 
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
