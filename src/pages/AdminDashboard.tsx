@@ -1,14 +1,12 @@
 import React from "react";
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/components/ui/card";
-import { useNavigate } from "react-router-dom";
-import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { ShieldCheckIcon, UsersIcon, ChevronLeft, ClockIcon } from "lucide-react";
+import { ShieldCheckIcon, UsersIcon, ClockIcon } from "lucide-react";
 import { useUserProfile } from "@/hooks/useUserProfile";
 import { Skeleton } from "@/components/ui/skeleton";
+import DashboardHeaderCard from "@/components/DashboardHeaderCard";
 
 const AdminDashboard = () => {
-  const navigate = useNavigate();
   const { profile, loading } = useUserProfile();
 
   const userName = profile ? `${profile.first_name || ''} ${profile.last_name || ''}`.trim() : "Admin";
@@ -33,26 +31,11 @@ const AdminDashboard = () => {
 
   return (
     <div className="flex flex-col gap-6">
-      <Card className="w-full bg-white/80 dark:bg-black/50 backdrop-blur-sm">
-        <CardHeader className="relative">
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => navigate(-1)}
-            className="absolute left-4 top-4"
-          >
-            <ChevronLeft className="h-5 w-5" />
-            <span className="sr-only">Back</span>
-          </Button>
-          <CardTitle className="text-3xl text-center">Welcome, {userName}!</CardTitle>
-          <CardDescription className="text-center">Overview of system administration and user management.</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <p className="text-lg text-gray-700 dark:text-gray-300 text-center">
-            Manage users, roles, and system configurations with ease.
-          </p>
-        </CardContent>
-      </Card>
+      <DashboardHeaderCard
+        userName={userName}
+        description="Overview of system administration and user management."
+        content="Manage users, roles, and system configurations with ease."
+      />
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         <Card className="bg-white/80 dark:bg-black/50 backdrop-blur-sm">

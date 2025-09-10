@@ -1,14 +1,12 @@
 import React from "react";
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/components/ui/card";
-import { useNavigate } from "react-router-dom";
-import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Building2Icon, UsersIcon, ChevronLeft, UserCogIcon } from "lucide-react";
+import { Building2Icon, UsersIcon, UserCogIcon } from "lucide-react";
 import { useUserProfile } from "@/hooks/useUserProfile";
 import { Skeleton } from "@/components/ui/skeleton";
+import DashboardHeaderCard from "@/components/DashboardHeaderCard";
 
 const HodDashboard = () => {
-  const navigate = useNavigate();
   const { profile, loading } = useUserProfile();
 
   const userName = profile ? `${profile.first_name || ''} ${profile.last_name || ''}`.trim() : "HOD";
@@ -33,26 +31,11 @@ const HodDashboard = () => {
 
   return (
     <div className="flex flex-col gap-6">
-      <Card className="w-full bg-white/80 dark:bg-black/50 backdrop-blur-sm">
-        <CardHeader className="relative">
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => navigate(-1)}
-            className="absolute left-4 top-4"
-          >
-            <ChevronLeft className="h-5 w-5" />
-            <span className="sr-only">Back</span>
-          </Button>
-          <CardTitle className="text-3xl text-center">Welcome, {userName}!</CardTitle>
-          <CardDescription className="text-center">Overview of your department's performance and management.</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <p className="text-lg text-gray-700 dark:text-gray-300 text-center">
-            Effectively manage students, faculty, and departmental settings.
-          </p>
-        </CardContent>
-      </Card>
+      <DashboardHeaderCard
+        userName={userName}
+        description="Overview of your department's performance and management."
+        content="Effectively manage students, faculty, and departmental settings."
+      />
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         <Card className="bg-white/80 dark:bg-black/50 backdrop-blur-sm">

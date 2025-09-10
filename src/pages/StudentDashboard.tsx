@@ -1,15 +1,14 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/components/ui/card";
-import { useNavigate } from "react-router-dom";
-import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { ChevronLeft, FileTextIcon } from "lucide-react";
+import { FileTextIcon } from "lucide-react";
 import { useUserProfile } from "@/hooks/useUserProfile";
 import { Skeleton } from "@/components/ui/skeleton";
 import GatepassRequestForm from "@/components/GatepassRequestForm";
 import { supabase } from "@/integrations/supabase/client";
 import { Badge } from "@/components/ui/badge";
 import { showError } from "@/utils/toast";
+import DashboardHeaderCard from "@/components/DashboardHeaderCard";
 
 interface GatepassRequest {
   id: string;
@@ -21,7 +20,6 @@ interface GatepassRequest {
 }
 
 const StudentDashboard = () => {
-  const navigate = useNavigate();
   const { profile, loading: profileLoading } = useUserProfile();
   const [requests, setRequests] = useState<GatepassRequest[]>([]);
   const [requestsLoading, setRequestsLoading] = useState(true);
@@ -84,26 +82,11 @@ const StudentDashboard = () => {
 
   return (
     <div className="flex flex-col gap-6">
-      <Card className="w-full bg-white/80 dark:bg-black/50 backdrop-blur-sm">
-        <CardHeader className="relative">
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => navigate(-1)}
-            className="absolute left-4 top-4"
-          >
-            <ChevronLeft className="h-5 w-5" />
-            <span className="sr-only">Back</span>
-          </Button>
-          <CardTitle className="text-3xl text-center">Welcome, {userName}!</CardTitle>
-          <CardDescription className="text-center">Here's an overview of your academic journey.</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <p className="text-lg text-gray-700 dark:text-gray-300 text-center">
-            Stay on top of your courses, grades, and upcoming activities.
-          </p>
-        </CardContent>
-      </Card>
+      <DashboardHeaderCard
+        userName={userName}
+        description="Here's an overview of your academic journey."
+        content="Stay on top of your courses, grades, and upcoming activities."
+      />
 
       <GatepassRequestForm profile={profile} onFormSubmit={fetchRequests} />
 
