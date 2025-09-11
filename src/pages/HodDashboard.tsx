@@ -1,6 +1,5 @@
 import React from "react";
-import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/components/ui/card";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Building2Icon, UsersIcon, UserCogIcon } from "lucide-react";
 import { useUserProfile } from "@/hooks/useUserProfile";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -20,7 +19,6 @@ const HodDashboard = () => {
           <Skeleton className="h-28 w-full" />
           <Skeleton className="h-28 w-full" />
         </div>
-        <Skeleton className="h-48 w-full" />
       </div>
     );
   }
@@ -69,31 +67,6 @@ const HodDashboard = () => {
           </CardContent>
         </Card>
       </div>
-
-      <Card className="w-full bg-white/80 dark:bg-black/50 backdrop-blur-sm">
-        <CardHeader>
-          <CardTitle>Your Detailed Information</CardTitle>
-          <CardDescription>A comprehensive look at your profile.</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Name</TableHead>
-                <TableHead>Email</TableHead>
-                <TableHead>Role</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              <TableRow key={profile.id}>
-                <TableCell className="font-medium">{userName}</TableCell>
-                <TableCell>{profile.email}</TableCell>
-                <TableCell>{profile.role}</TableCell>
-              </TableRow>
-            </TableBody>
-          </Table>
-        </CardContent>
-      </Card>
     </div>
   );
 };
