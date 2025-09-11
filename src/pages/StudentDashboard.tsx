@@ -129,31 +129,6 @@ const StudentDashboard = () => {
           )}
         </CardContent>
       </Card>
-
-      <Card className="w-full bg-white/80 dark:bg-black/50 backdrop-blur-sm">
-        <CardHeader>
-          <CardTitle>Your Detailed Information</CardTitle>
-          <CardDescription>A comprehensive look at your profile.</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Name</TableHead>
-                <TableHead>Email</TableHead>
-                <TableHead>Role</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              <TableRow key={profile.id}>
-                <TableCell className="font-medium">{userName}</TableCell>
-                <TableCell>{profile.email}</TableCell>
-                <TableCell>{profile.role}</TableCell>
-              </TableRow>
-            </TableBody>
-          </Table>
-        </CardContent>
-      </Card>
     </div>
   );
 };

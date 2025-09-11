@@ -25,8 +25,8 @@ export const getNavItemsByRole = (role: string): NavItem[] => {
   ];
 
   const studentItems: NavItem[] = [
-    { href: "/student-dashboard", label: "Dashboard", icon: LayoutDashboard },
     { href: "/new-request", label: "New Request", icon: PlusCircle },
+    { href: "/student-dashboard", label: "Dashboard", icon: LayoutDashboard },
     { href: "/request-history", label: "Request History", icon: History },
     ...baseItems,
   ];
