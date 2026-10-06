@@ -17,9 +17,12 @@ const Header: React.FC = () => {
           <a href="#about" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">About</a>
           <a href="#contact" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">Contact</a>
         </nav>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
           <Link to="/login">
-            <Button>Login</Button>
+            <Button variant="ghost">Login</Button>
+          </Link>
+          <Link to="/signup">
+            <Button>Sign Up</Button>
           </Link>
         </div>
       </div>

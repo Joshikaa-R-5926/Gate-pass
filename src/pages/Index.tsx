@@ -74,12 +74,12 @@ const Index = () => {
                 Your simple, secure way to request and manage hostel gate passes. Get approved in minutes and enjoy your time out.
               </motion.p>
               <motion.div className="mt-8 flex flex-col sm:flex-row justify-center lg:justify-start gap-4" variants={itemVariants}>
-                <Link to="/login">
-                  <Button size="lg" className="text-lg px-8 py-6 w-full sm:w-auto hover:scale-105 transition-transform">Get Started</Button>
+                <Link to="/signup">
+                  <Button size="lg" className="text-lg px-8 py-6 w-full sm:w-auto hover:scale-105 transition-transform">Create Account</Button>
                 </Link>
-                <a href="#features">
-                  <Button size="lg" variant="outline" className="text-lg px-8 py-6 w-full sm:w-auto hover:scale-105 transition-transform bg-transparent">Learn More</Button>
-                </a>
+                <Link to="/login">
+                  <Button size="lg" variant="outline" className="text-lg px-8 py-6 w-full sm:w-auto hover:scale-105 transition-transform bg-transparent">Login</Button>
+                </Link>
               </motion.div>
             </div>
             <motion.div variants={itemVariants} className="hidden lg:block">
