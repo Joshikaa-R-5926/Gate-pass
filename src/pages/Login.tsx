@@ -124,11 +124,37 @@ const Login = () => {
               {loading ? "Logging in..." : "Login"}
             </Button>
           </form>
+
           <div className="mt-4 text-center text-sm text-gray-600 dark:text-gray-400">
             Don't have an account?{" "}
             <Link to="/signup" className="text-blue-600 dark:text-blue-400 font-medium underline hover:text-blue-700">
               Sign Up
             </Link>
+          </div>
+
+          <div className="mt-6 border-t pt-4">
+            <p className="text-xs text-center text-muted-foreground mb-2">Quick Demo Accounts (1-Click Fill):</p>
+            <div className="flex flex-wrap gap-1.5 justify-center">
+              {[
+                { label: "Admin", email: "admin@gatepass.com" },
+                { label: "Student", email: "student@gatepass.com" },
+                { label: "Warden", email: "warden@gatepass.com" },
+                { label: "Tutor", email: "tutor@gatepass.com" },
+                { label: "HOD", email: "hod@gatepass.com" },
+              ].map((acc) => (
+                <button
+                  key={acc.label}
+                  type="button"
+                  onClick={() => {
+                    setEmail(acc.email);
+                    setPassword("password123");
+                  }}
+                  className="text-xs px-2 py-1 rounded bg-secondary text-secondary-foreground hover:bg-secondary/80 transition-colors"
+                >
+                  {acc.label}
+                </button>
+              ))}
+            </div>
           </div>
         </CardContent>
       </Card>

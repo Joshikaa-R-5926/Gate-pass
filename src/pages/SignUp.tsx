@@ -51,8 +51,26 @@ const SignUp = () => {
     if (error) {
       showError(error.message);
     } else {
-      showSuccess("Success! Please check your email to verify your account.");
-      navigate("/login");
+      showSuccess("Account created successfully!");
+      switch (role.toLowerCase()) {
+        case "student":
+          navigate("/student-dashboard");
+          break;
+        case "tutor":
+          navigate("/tutor-dashboard");
+          break;
+        case "hod":
+          navigate("/hod-dashboard");
+          break;
+        case "warden":
+          navigate("/warden-dashboard");
+          break;
+        case "admin":
+          navigate("/admin-dashboard");
+          break;
+        default:
+          navigate("/login");
+      }
     }
   };
 
